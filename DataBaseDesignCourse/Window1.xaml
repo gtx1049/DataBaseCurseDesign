@@ -1,0 +1,419 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="DataBaseDesignCourse.Window1"
+	x:Name="Window"
+	Title="城市公安信息管理系统--UI version0.1"
+	Width="800" Height="600" MinWidth="800" MinHeight="400">
+	<Grid>
+		<TabControl Background="#FFF3F3F3">
+			<TabItem Header="公民信息管理">
+				<Grid>
+					<StackPanel Height="105.163" Margin="4,1.665,8,0" VerticalAlignment="Top" Orientation="Horizontal">
+						<GroupBox Header="模糊查询" Height="105.163" Background="White" Width="482" MaxWidth="482" HorizontalAlignment="Left">
+							<Canvas Margin="0,0,-4,-2.837">
+								<ComboBox Height="20" HorizontalAlignment="Left" Width="101.334" Canvas.Left="360.833" Canvas.Top="6.996"/>
+								<TextBox Height="20" TextWrapping="Wrap" Width="93.667" Canvas.Left="72.583" Canvas.Top="6.996"/>
+								<TextBlock Height="20" TextWrapping="Wrap" Width="36" Canvas.Left="32.583" Canvas.Top="6.996"><Run Language="zh-cn" Text="姓名："/></TextBlock>
+								<TextBlock Height="20" TextWrapping="Wrap" Width="36" Canvas.Left="183.25" Canvas.Top="6.996"><Run Language="zh-cn" Text="性别："/><LineBreak/><Run Language="zh-cn"/></TextBlock>
+								<RadioButton Content="男" Height="20" Width="47.25" Canvas.Left="223.252" Canvas.Top="6.996"/>
+								<RadioButton Content="女" Height="20" Width="47.25" Canvas.Left="270.502" Canvas.Top="6.996"/>
+								<TextBlock Height="20" TextWrapping="Wrap" Width="36" RenderTransformOrigin="1.127,0.517" Canvas.Left="323.924" Canvas.Top="6.996"><Run Language="zh-cn" Text="籍贯："/></TextBlock>
+								<Button Content="查询" Height="23" Width="58" RenderTransformOrigin="0.759,0.947" Canvas.Left="404.167" Canvas.Top="54.163"/>
+								<TextBlock Height="20" TextWrapping="Wrap" Width="36" Canvas.Left="183.25" Canvas.Top="54.163"><Run Language="zh-cn" Text="电话："/></TextBlock>
+								<TextBox Height="20" TextWrapping="Wrap" Width="93.667" Canvas.Left="223.25" Canvas.Top="54.163"/>
+								<TextBlock Height="20" TextWrapping="Wrap" Width="36" Canvas.Left="183.25" Canvas.Top="30.996"><Run Language="zh-cn" Text="住址："/></TextBlock>
+								<TextBox Height="20" TextWrapping="Wrap" Width="238.915" Canvas.Left="223.252" Canvas.Top="30.996"/>
+								<TextBlock Height="20" TextWrapping="Wrap" Width="60.583" Canvas.Left="8" Canvas.Top="54.996"><Run Language="zh-cn" Text="犯罪记录："/></TextBlock>
+								<RadioButton Content="有" Height="20" Width="33.25" Canvas.Left="73.583" Canvas.Top="55.163"/>
+								<RadioButton Content="无" Height="20" Width="33.25" Canvas.Left="124" Canvas.Top="54.996"/>
+								<TextBlock Height="20" TextWrapping="Wrap" Width="60.583" Canvas.Left="8" Canvas.Top="30.996"><Run Language="zh-cn" Text="出生日期："/></TextBlock>
+								<ListBox Height="19.335" Canvas.Left="73.5" Canvas.Top="31.661" Width="92.75"/>
+							</Canvas>
+						</GroupBox>
+						<GroupBox Header="精确查询" HorizontalAlignment="Right" Margin="0,0,6,0" Width="277.333" Background="White">
+							<Grid Margin="0,0,2,1.326" HorizontalAlignment="Right" Width="253.333">
+								<TextBlock Height="20" TextWrapping="Wrap" Margin="8,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="64.25"><Run Language="zh-cn" Text="证件类型："/></TextBlock>
+								<ComboBox Height="20" Margin="71.25,7,93.083,0" VerticalAlignment="Top"/>
+								<TextBox TextWrapping="Wrap" Margin="72.25,32,8,30.665"/>
+								<TextBlock TextWrapping="Wrap" Width="48.25" TextAlignment="Center" HorizontalAlignment="Left" Margin="19,33,0,29.665"><Run Language="zh-cn" Text="证件号："/></TextBlock>
+								<Button Content="查询" Height="23" Width="58" RenderTransformOrigin="0.759,0.947" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,8,0" Click="Button_Click" />
+							</Grid>
+						</GroupBox>
+					</StackPanel>
+					<ListView Margin="4,123.163,288.75,58" SelectionChanged="ListView_SelectionChanged">
+						<ListView.View>
+							<GridView>
+								<GridViewColumn Header="姓名" Width="50"/>
+								<GridViewColumn Header="性别" Width="30"/>
+								<GridViewColumn Header="籍贯" Width="40"/>
+								<GridViewColumn Header="出生日期" Width="60"/>
+								<GridViewColumn Header="身份证" Width="160"/>
+								<GridViewColumn Header="犯罪情况" Width="60"/>
+								<GridViewColumn Header="地址" Width="200"/>
+								<GridViewColumn Header="电话号码" Width="80"/>
+							</GridView>
+						</ListView.View>
+					</ListView>
+					<Grid Height="36" Margin="8,0,10,8" VerticalAlignment="Bottom" Background="#FFE0E0E0">
+						<Button Content="删除" HorizontalAlignment="Right" Margin="0,5,205,3" Width="88">
+							<Button.Background>
+								<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+									<GradientStop Color="#FFFFB6B6" Offset="0"/>
+									<GradientStop Color="#FFFF4D4D" Offset="1"/>
+								</LinearGradientBrush>
+							</Button.Background>
+						</Button>
+						<Button Content="增加" HorizontalAlignment="Right" Margin="0,4,6,4" Width="88">
+							<Button.Background>
+								<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+									<GradientStop Color="#FFF3F3F3" Offset="0"/>
+									<GradientStop Color="#FF36A1E5" Offset="1"/>
+								</LinearGradientBrush>
+							</Button.Background>
+						</Button>
+						<Button Content="修改" HorizontalAlignment="Right" Margin="0,4,104,4" Width="88">
+							<Button.Background>
+								<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+									<GradientStop Color="#FFF3F3F3" Offset="0"/>
+									<GradientStop Color="#FFE9A81A" Offset="1"/>
+								</LinearGradientBrush>
+							</Button.Background>
+						</Button>
+						<Button Content="更新" Margin="0,5,306,3" HorizontalAlignment="Right" Width="88">
+							<Button.Background>
+								<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+									<GradientStop Color="White" Offset="0"/>
+									<GradientStop Color="#FFAFAFAF" Offset="1"/>
+								</LinearGradientBrush>
+							</Button.Background>
+						</Button>
+					</Grid>
+					<Grid HorizontalAlignment="Right" Margin="0,123.163,8,58" Width="276.75" Background="White">
+						<Grid HorizontalAlignment="Right" Height="120" Margin="0,11,16.75,0" VerticalAlignment="Top" Width="100" Background="#FFFFF6BB"/>
+						<TextBlock HorizontalAlignment="Left" Height="19.333" Margin="9.334,20.668,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="39.083"><Run Language="zh-cn" Text="姓名："/></TextBlock>
+						<TextBox Height="20" Margin="51.083,18.667,130.333,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" IsEnabled="False"/>
+						<TextBlock HorizontalAlignment="Left" Height="19.333" Margin="9.334,0,0,101.322" TextWrapping="Wrap" VerticalAlignment="Bottom" Width="64.417" RenderTransformOrigin="0.638,3.448"><Run Language="zh-cn" Text="涉案列表："/></TextBlock>
+						<ListView Margin="9.334,0,8,0" Height="95.322" VerticalAlignment="Bottom">
+							<ListView.View>
+								<GridView>
+									<GridViewColumn Header="案件编号" Width="80"/>
+									<GridViewColumn Header="案件状态" Width="80"/>
+									<GridViewColumn Header="涉案人数" Width="80"/>
+								</GridView>
+							</ListView.View>
+						</ListView>
+						<TextBlock HorizontalAlignment="Left" Height="19.333" Margin="9.334,134.668,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="52.416"><Run Language="zh-cn" Text="驾驶证："/></TextBlock>
+						<ListView Margin="9.334,154.001,8,124.655">
+							<ListView.View>
+								<GridView>
+									<GridViewColumn Header="驾驶证号码" Width="121"/>
+									<GridViewColumn Header="驾驶证类型" Width="80"/>
+								</GridView>
+							</ListView.View>
+						</ListView>
+						<TextBlock HorizontalAlignment="Left" Height="19.333" Margin="9.334,62.668,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="77.083"><Run Language="zh-cn" Text="是否为警察："/></TextBlock>
+						<TextBox Height="20" Margin="80.583,62.668,130.333,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" IsEnabled="False"/>
+						<Button Content="查看" Height="21.999" Margin="80.583,89.501,130.333,0" VerticalAlignment="Top"/>
+					</Grid>
+				</Grid>
+			</TabItem>
+			<TabItem Header="案件信息管理">
+				<Grid>
+					<GroupBox Header="查询" Height="94.538" Margin="4.313,1.625,197,0" VerticalAlignment="Top" Background="White">
+						<Grid Margin="0,0,2.333,1.829">
+							<TextBlock HorizontalAlignment="Left" Margin="9.354,8.704,0,0" TextWrapping="Wrap" Width="63.333" Height="14.667" VerticalAlignment="Top"><Run Language="zh-cn" Text="案件编号："/></TextBlock>
+							<TextBox HorizontalAlignment="Left" Height="21.202" Margin="70.687,6.668,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="95.333"/>
+							<TextBlock HorizontalAlignment="Left" Margin="9.354,0,0,15.501" TextWrapping="Wrap" Width="63.333" Height="14.667" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="案发地点："/></TextBlock>
+							<TextBox Height="21.202" Margin="70.687,0,127.667,11.002" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Bottom"/>
+							<TextBlock HorizontalAlignment="Left" Margin="186.687,7.74,0,0" TextWrapping="Wrap" Width="63.333" Height="14.667" VerticalAlignment="Top"><Run Language="zh-cn" Text="案件类型："/></TextBlock>
+							<ComboBox Height="20.502" Margin="248.686,6.701,216.335,0" VerticalAlignment="Top"/>
+							<TextBlock HorizontalAlignment="Right" Margin="0,9.668,127.667,0" TextWrapping="Wrap" Width="63.333" Height="14.667" VerticalAlignment="Top"><Run Language="zh-cn" Text="案发时间："/></TextBlock>
+							<TextBox Height="21.202" Margin="0,6.668,8,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" HorizontalAlignment="Right" Width="119.667"/>
+							<Button Content="查询" HorizontalAlignment="Right" Margin="0,34.668,8,11.002" Width="67.167"/>
+						</Grid>
+					</GroupBox>
+					<ListView Margin="4.313,109.663,197,8">
+						<ListView.View>
+							<GridView>
+								<GridViewColumn Header="案件编号" Width="81"/>
+								<GridViewColumn Header="案发地点" Width="150"/>
+								<GridViewColumn Header="案件类型" Width="80"/>
+								<GridViewColumn Header="案件时间" Width="80"/>
+								<GridViewColumn Width="80" Header="查看涉案人员"/>
+							</GridView>
+						</ListView.View>
+					</ListView>
+					<Grid HorizontalAlignment="Right" Margin="0,371.663,8,8" Width="182" Background="White">
+						<TextBlock Height="26.5" Margin="1,1,-1,0" TextWrapping="Wrap" VerticalAlignment="Top" Background="#FFFFE2B7" FontSize="13.333"><Run Language="zh-cn" Text="案件描述"/></TextBlock>
+					</Grid>
+					<GroupBox Header="案件进程处理" HorizontalAlignment="Right" Margin="0,183.816,5.666,0" Width="185" Background="#FFE0E0E0" FontSize="13.333" Height="127.541" VerticalAlignment="Top">
+						<Grid Margin="2,0.404,2,2">
+							<Button Content="结案" HorizontalAlignment="Right" Height="33" VerticalAlignment="Top" Width="65" Margin="0,55,13,0"/>
+							<Button Content="立案" Height="33" Margin="9,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="65"/>
+							<Button Content="审讯" HorizontalAlignment="Left" Height="33" Margin="9,0,0,11" VerticalAlignment="Bottom" Width="65"/>
+							<Button Content="调查" HorizontalAlignment="Right" Height="33" Margin="0,8,12,0" VerticalAlignment="Top" Width="65"/>
+						</Grid>
+					</GroupBox>
+					<GroupBox Header="操作" HorizontalAlignment="Right" Margin="0,309.663,7,0" Width="183" Background="#FFE0E0E0" Height="58" VerticalAlignment="Top">
+						<Grid Margin="3,2.664,2,2">
+							<Button Content="删除" Margin="60,0,57,4.336" Height="24.5" VerticalAlignment="Bottom">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FFDC5858" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+							<Button Content="增加" Margin="0,0,5,4.336" HorizontalAlignment="Right" Width="48" Height="24.5" VerticalAlignment="Bottom">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FF006DA7" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+							<Button Content="刷新" Margin="8,0,0,4.336" HorizontalAlignment="Left" Width="48" Height="24.5" VerticalAlignment="Bottom">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FFA5A5A5" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+						</Grid>
+					</GroupBox>
+					<GroupBox Header="根据状态生成报表" HorizontalAlignment="Right" Height="94.538" Margin="0,1.625,8,0" VerticalAlignment="Top" Width="185" Background="#FFE4E4E4">
+						<Grid Margin="2,0,2,1.702">
+							<CheckBox Content="立案状态" Height="17.702" Margin="1,0,73.5,0" VerticalAlignment="Top"/>
+							<CheckBox Content="调查状态" Margin="1,17.702,73.5,34.595"/>
+							<CheckBox Content="审讯状态" Margin="1.5,0,73,16.892" Height="17.703" VerticalAlignment="Bottom"/>
+							<CheckBox Content="结案状态" Margin="1.5,0,73,0" Height="17.702" VerticalAlignment="Bottom"/>
+							<Button Content="生成" HorizontalAlignment="Right" Height="26.297" Margin="0,0,4.333,4.66" VerticalAlignment="Bottom" Width="79.334"/>
+						</Grid>
+					</GroupBox>
+					<TextBlock HorizontalAlignment="Right" Height="32.333" Margin="0,17.83,21.666,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78.667" Foreground="#FFA18554"><Run Language="zh-cn" Text="勾选报表所包含的案件状态"/></TextBlock>
+					<GroupBox Header="根据时间生成报表" HorizontalAlignment="Right" Height="83.653" Margin="0,100.163,8,0" VerticalAlignment="Top" Width="185" Background="#FFE4E4E4">
+						<Grid Margin="2,0,2,1.702">
+							<Button Content="生成" Height="20.797" Margin="0,0,4.333,4.66" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="48"/>
+							<TextBlock HorizontalAlignment="Left" Margin="8,10.664,0,0" TextWrapping="Wrap" Width="45.5" Height="19.173" VerticalAlignment="Top"><Run Language="zh-cn" Text="时间："/></TextBlock>
+							<TextBox Margin="47,8.5,8,0" TextWrapping="Wrap" Text="TextBox" Height="19.837" VerticalAlignment="Top"/>
+						</Grid>
+					</GroupBox>
+				</Grid>
+			</TabItem>
+			<TabItem Header="车辆信息管理">
+				<Grid>
+					<Grid.ColumnDefinitions>
+						<ColumnDefinition/>
+					</Grid.ColumnDefinitions>
+					<GroupBox Header="查询" Height="94.205" VerticalAlignment="Top" Background="White" Margin="5.375,1.833,418,0">
+						<Grid Margin="2,0,2,3.037">
+							<TextBlock HorizontalAlignment="Left" Margin="30,14.038,0,0" TextWrapping="Wrap" Width="41" Height="16.121" VerticalAlignment="Top"><Run Language="zh-cn" Text="车号："/></TextBlock>
+							<TextBlock HorizontalAlignment="Left" Margin="6,0,0,11.051" TextWrapping="Wrap" Width="63" Height="16.121" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="车主姓名："/></TextBlock>
+							<TextBox Margin="66,12.37,89.959,0" TextWrapping="Wrap" Text="TextBox" Height="20.79" VerticalAlignment="Top"/>
+							<TextBox Margin="66,0,89.959,8.214" TextWrapping="Wrap" Text="TextBox" Height="20.791" VerticalAlignment="Bottom"/>
+							<Button Content="查询" HorizontalAlignment="Right" Margin="0,5.16,14.995,3.171" Width="60"/>
+						</Grid>
+					</GroupBox>
+					<ListView Margin="5.375,110.163,418,78">
+						<ListView.View>
+							<GridView>
+								<GridViewColumn Header="车号" Width="120"/>
+								<GridViewColumn Header="车型" Width="120"/>
+								<GridViewColumn Header="使用状态" Width="100"/>
+							</GridView>
+						</ListView.View>
+					</ListView>
+					<GroupBox Header="车主信息" Margin="0,165,213.5,0" Background="White" HorizontalAlignment="Right" Width="196" Height="186.164" VerticalAlignment="Top">
+						<Grid Margin="2.5,2.327,2,3">
+							<Grid HorizontalAlignment="Right" Height="100" Margin="0,19,4,0" VerticalAlignment="Top" Width="80" Background="#FFFFF6DE" d:LayoutOverrides="HorizontalAlignment"/>
+							<TextBlock Margin="8.5,156,0,24.001" TextWrapping="Wrap" HorizontalAlignment="Left" Width="73"><Run Language="zh-cn" Text="地址："/></TextBlock>
+							<Button Content="查看身份证" Height="20.313" Margin="0,0,4,8" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="80" d:LayoutOverrides="HorizontalAlignment"/>
+							<TextBlock Margin="6.5,18.505,0,0" TextWrapping="Wrap" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40.667"><Run Language="zh-cn" Text="姓名："/></TextBlock>
+							<TextBox Height="19" Margin="6.5,37.505,89.667,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" IsEnabled="False"/>
+							<TextBox Margin="47.167,69.505,89.667,69.496" TextWrapping="Wrap" Text="TextBox" IsEnabled="False"/>
+							<TextBlock Margin="6.5,69.505,0,70.496" TextWrapping="Wrap" HorizontalAlignment="Left" Width="36.667"><Run Language="zh-cn" Text="年龄："/></TextBlock>
+							<TextBlock Margin="6.5,0,0,37.997" TextWrapping="Wrap" HorizontalAlignment="Left" Width="36.667" Height="17.999" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="籍贯："/></TextBlock>
+							<TextBox Margin="47.167,0,89.667,38.997" TextWrapping="Wrap" Text="TextBox" IsEnabled="False" Height="18.999" VerticalAlignment="Bottom"/>
+							<Button Content="查看驾照" Height="20.313" Margin="0,0,89.667,8" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="83.333"/>
+						</Grid>
+					</GroupBox>
+					<GroupBox Header="车辆信息的管理" Height="75" Margin="0,0,418,3" VerticalAlignment="Bottom" Background="#FFE0E0E0" HorizontalAlignment="Right" Width="350.625">
+						<Grid Margin="2,3.163,0,2" HorizontalAlignment="Left" Width="332.5">
+							<Button Content="删除车辆" Margin="88,8,0,0" HorizontalAlignment="Left" Width="74" Height="31" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment"/>
+							<Button Content="增加车辆" HorizontalAlignment="Left" Margin="8,8,0,0" Width="74" d:LayoutOverrides="HorizontalAlignment" Height="31" VerticalAlignment="Top">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FF36A1E5" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+							<Button Content="刷新" Margin="250.5,8,0,0" HorizontalAlignment="Left" Width="74" Height="31" VerticalAlignment="Top">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FF979797" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+							<Button Content="删除车辆" Margin="88,8,0,0" HorizontalAlignment="Left" Width="74" Height="31" VerticalAlignment="Top" d:LayoutOverrides="HorizontalAlignment">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FFF54545" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+						</Grid>
+					</GroupBox>
+					<GroupBox Header="车辆详细信息" Height="163.167" Margin="0,1.833,0,0" VerticalAlignment="Top" Background="White" HorizontalAlignment="Right" Width="411">
+						<Grid Margin="2,0,2,1.999">
+							<TextBlock Margin="0,47.539,106.833,0" TextWrapping="Wrap" HorizontalAlignment="Right" Width="65" Height="18.005" VerticalAlignment="Top"><Run Language="zh-cn" Text="购买时间："/></TextBlock>
+							<TextBlock Height="18" Margin="52.5,15.538,0,0" TextWrapping="Wrap" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40"><Run Language="zh-cn" Text="车型："/></TextBlock>
+							<TextBlock Margin="15.833,0,0,42.782" TextWrapping="Wrap" HorizontalAlignment="Left" Width="76" Height="18" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="保险有效期："/></TextBlock>
+							<TextBlock Margin="174.5,0,99.5,42.782" TextWrapping="Wrap" Height="18.005" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="最新一次检修日期："/></TextBlock>
+							<TextBlock Margin="174.5,0,179.5,11.332" TextWrapping="Wrap" Height="18" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="备注："/></TextBlock>
+							<TextBlock Margin="28.506,0,0,11.332" TextWrapping="Wrap" HorizontalAlignment="Left" Width="62.667" Height="18" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="使用情况："/></TextBlock>
+							<TextBlock Margin="52.506,47.539,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="39" Height="18.005" VerticalAlignment="Top"><Run Language="zh-cn" Text="车号："/></TextBlock>
+						</Grid>
+					</GroupBox>
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,33.159,36.333,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="280" IsEnabled="False"/>
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,65.159,36.333,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="83.333" IsEnabled="False"/>
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,93.159,233,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="83.333" IsEnabled="False"/>
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,93.159,36.333,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="83.333" IsEnabled="False"/>
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,126.492,36.333,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="152.667" IsEnabled="False"/>
+					<GroupBox Header="针对驾照和车辆操作" Margin="0,169,8,0" Background="#FFE0E0E0" HorizontalAlignment="Right" Width="201.5" Height="182.164" VerticalAlignment="Top">
+						<Grid Margin="0,3.163,2,2">
+							<Button Content="修改车辆信息" Height="25.164" Margin="0,8,68.667,0" VerticalAlignment="Top">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FF309931" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+							<Button Content="删除车辆信息" Height="25.164" Margin="0,37.164,1.834,0" VerticalAlignment="Top">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FFF54545" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+							<Button Content="更改车主" Margin="0,0,1.834,66.673" Height="21.164" VerticalAlignment="Bottom">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FFE9A81A" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+							<Button Content="增加违章记录" Margin="0,0,0,37.51" Height="25.163" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="92.833">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FF36A1E5" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+							<Button Content="确定" Height="25.164" Margin="0,8,1.834,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="62.833">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FF309931" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+							<Button Content="增加事故记录" Margin="0,0,0,8" Height="25.163" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="92.833">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FF2995DA" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+							<Button Content="删除违章记录" Margin="92.833,0,1.834,37.51" Height="25.163" VerticalAlignment="Bottom">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3"/>
+										<GradientStop Color="#FFE94E4E" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+							<Button Content="删除事故记录" Margin="92.833,0,1.834,8.347" Height="25.163" VerticalAlignment="Bottom">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FFF32E2E" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+						</Grid>
+					</GroupBox>
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,126.492,233,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="83.333" IsEnabled="False"/>
+					<GroupBox Header="违章情况" Margin="0,355.164,213.5,3" Background="White" HorizontalAlignment="Right" Width="197.5">
+						<ListView Margin="0,0,3.833,0.827">
+							<ListView.View>
+								<GridView>
+									<GridViewColumn/>
+								</GridView>
+							</ListView.View>
+						</ListView>
+					</GroupBox>
+					<GroupBox Header="事故情况" Margin="0,355.164,12,3" Background="White" HorizontalAlignment="Right" Width="197.5">
+						<ListView Margin="0,0,0,0.827" HorizontalAlignment="Left" Width="181.667">
+							<ListView.View>
+								<GridView>
+									<GridViewColumn/>
+								</GridView>
+							</ListView.View>
+						</ListView>
+					</GroupBox>
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,65.159,189,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="126.333" IsEnabled="False"/>
+				</Grid>
+			</TabItem>
+			<TabItem Header="警力和场所分布">
+				<Grid>
+					<Grid Margin="175.662,13.832,8,8" Background="#FFD7E2D7"/>
+					<GroupBox Header="场所" HorizontalAlignment="Left" Margin="5.417,256.496,0,8" Width="155.739" Background="White">
+						<Grid Margin="2,1.164,2,2">
+							<TextBlock Margin="6.253,13.334,0,0" TextWrapping="Wrap" Height="19.333" VerticalAlignment="Top" HorizontalAlignment="Left" Width="39.333"><Run Language="zh-cn" Text="地区："/></TextBlock>
+							<TextBlock Margin="8,73.334,0,0" TextWrapping="Wrap" Height="19.333" VerticalAlignment="Top" HorizontalAlignment="Left" Width="39.333"><Run Language="zh-cn" Text="名称："/></TextBlock>
+							<TextBox Margin="7.833,93.334,8,0" TextWrapping="Wrap" Text="TextBox" Height="24.167" VerticalAlignment="Top"/>
+							<TextBlock Margin="8,0,0,79.667" TextWrapping="Wrap" Height="19.333" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="60.666"><Run Language="zh-cn" Text="场所数量："/></TextBlock>
+							<Button Content="查询" Height="22.332" Margin="0,0,7.999,17.668" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="60.573"/>
+							<ComboBox Height="20.501" Margin="6.253,0,6.665,53" VerticalAlignment="Bottom"/>
+							<ComboBox Height="20.501" Margin="7.5,43.666,5.418,0" VerticalAlignment="Top"/>
+						</Grid>
+					</GroupBox>
+					<GroupBox Header="警力分布" Height="250.183" Margin="5.417,2.313,0,0" VerticalAlignment="Top" Background="White" HorizontalAlignment="Left" Width="155.739">
+						<Grid Margin="0,1.347,1.583,2">
+							<TextBox Margin="9.25,77,9,0" TextWrapping="Wrap" Text="TextBox" Height="28.167" VerticalAlignment="Top"/>
+							<TextBlock Margin="10.25,12.001,0,0" TextWrapping="Wrap" Height="19.333" VerticalAlignment="Top" HorizontalAlignment="Left" Width="39.333"><Run Language="zh-cn" Text="地区："/></TextBlock>
+							<ComboBox Height="19.333" Margin="10.25,33.334,8,0" VerticalAlignment="Top"/>
+							<TextBlock Margin="10.25,60.667,0,0" TextWrapping="Wrap" Height="19.333" VerticalAlignment="Top" HorizontalAlignment="Left" Width="49.333"><Run Language="zh-cn" Text="警官号："/></TextBlock>
+							<ComboBox Height="19.5" Margin="10.25,0,8,73.832" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment"/>
+							<Button Content="查询" HorizontalAlignment="Right" Height="22.332" Margin="0,0,8,43" VerticalAlignment="Bottom" Width="60.573" RenderTransformOrigin="0.528,-0.672"/>
+							<TextBlock Margin="10.833,108.834,56.49,99.832" TextWrapping="Wrap" RenderTransformOrigin="1.07,1.198"><Run Language="zh-cn" Text="按警力数量："/></TextBlock>
+							<Button Content="自动分配警力" Height="22.332" Margin="9.583,0,9,8" VerticalAlignment="Bottom">
+								<Button.Background>
+									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+										<GradientStop Color="#FFF3F3F3" Offset="0"/>
+										<GradientStop Color="#FFFF864D" Offset="1"/>
+									</LinearGradientBrush>
+								</Button.Background>
+							</Button>
+						</Grid>
+					</GroupBox>
+					<Slider HorizontalAlignment="Left" Margin="160.329,13.832,0,3.998" Width="11.333" Orientation="Vertical" Background="#00664D4D" BorderBrush="Black"/>
+				</Grid>
+			</TabItem>
+		</TabControl>
+		<Button Content="模拟" Height="17.903" Width="66.795" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="8" Margin="0,1.812,2.056,0"/>
+		<TextBlock HorizontalAlignment="Right" Height="19.715" Margin="0,2.916,144.121,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74.379"><Run Language="zh-cn" Text="总资金："/></TextBlock>
+		<TextBox HorizontalAlignment="Right" Height="18.715" Margin="0,1.999,83.25,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="87.75" IsEnabled="False"/>
+	</Grid>
+</Window>

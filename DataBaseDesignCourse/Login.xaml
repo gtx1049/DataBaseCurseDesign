@@ -1,0 +1,43 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d" x:Class="DataBaseDesignCourse.Login"
+    Title="登录" Height="235" Width="360" MaxWidth="360" MaxHeight="235" MinWidth="360" MinHeight="235" IsHitTestVisible="True">
+	<Window.Background>
+		<ImageBrush ImageSource="登录界面.jpg"/>
+	</Window.Background>
+	<Grid>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0.089*"/>
+			<ColumnDefinition Width="0*"/>
+			<ColumnDefinition Width="0.17*"/>
+			<ColumnDefinition Width="0.024*"/>
+			<ColumnDefinition Width="0.426*"/>
+			<ColumnDefinition Width="0*"/>
+			<ColumnDefinition Width="0.197*"/>
+			<ColumnDefinition Width="0*"/>
+			<ColumnDefinition Width="0.053*"/>
+			<ColumnDefinition Width="0.041*"/>
+		</Grid.ColumnDefinitions>
+		<Grid.RowDefinitions>
+			<RowDefinition Height="0.051*"/>
+			<RowDefinition Height="0.146*"/>
+			<RowDefinition Height="0.048*"/>
+			<RowDefinition Height="0.244*"/>
+			<RowDefinition Height="0.12*"/>
+			<RowDefinition Height="0.042*"/>
+			<RowDefinition Height="0.121*"/>
+			<RowDefinition Height="0.068*"/>
+			<RowDefinition Height="0.117*"/>
+			<RowDefinition Height="0.043*"/>
+			<RowDefinition Height="0*"/>
+			<RowDefinition Height="0*"/>
+		</Grid.RowDefinitions>
+		<TextBox Grid.Row="4" TextWrapping="Wrap" Grid.Column="4" Grid.ColumnSpan="3"/>
+		<TextBox Grid.Row="6" TextWrapping="Wrap" Grid.Column="4" Grid.ColumnSpan="3"/>
+		<TextBlock Grid.Column="2" Grid.Row="4" TextWrapping="Wrap" VerticalAlignment="Center" Width="58.48" HorizontalAlignment="Center" TextAlignment="Right"><Run Language="zh-cn" Text="登录号："/></TextBlock>
+		<TextBlock Grid.Column="2" Grid.Row="6" TextWrapping="Wrap" Width="58.48" TextAlignment="Right" Margin="0,1.182,0,-1.97"><Run Language="zh-cn" Text="密码："/></TextBlock>
+		<Button Grid.ColumnSpan="2" Content="登录" Grid.Column="5" Grid.Row="8" d:LayoutOverrides="GridBox"/>
+		<TextBlock Grid.ColumnSpan="10" Grid.Row="1" TextWrapping="Wrap" Foreground="#FFEEF3FF" FontSize="16" Margin="0,0,0,7.645" d:LayoutOverrides="Height" TextAlignment="Center"><Run Language="zh-cn" Text="欢迎使用城市公安信息管理系统"/></TextBlock>
+	</Grid>
+</Window>

@@ -1,0 +1,15 @@
+---------------------------------------------------------------------------
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\DataBaseDesignCourse.csproj
+---------------------------------------------------------------------------
+正在将 <ExpressionBlendVersion> 的值设置为“4.0.20621.0”
+正在将 ToolsVersion 从“3.5”更新为“4.0”
+正在保存文件
+
+
+---------------------------------------------------
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse.sln
+---------------------------------------------------
+正在将解决方案格式头设置为“Microsoft Visual Studio Solution File, Format Version 11.00”
+正在保存文件
+
+

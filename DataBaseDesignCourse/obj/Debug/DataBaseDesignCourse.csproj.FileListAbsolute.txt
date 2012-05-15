@@ -1,0 +1,32 @@
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\bin\Debug\DataBaseDesignCourse.exe
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\bin\Debug\DataBaseDesignCourse.pdb
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\ResolveAssemblyReference.cache
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\Window1.baml
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\Window1.g.cs
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\App.g.cs
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse_MarkupCompile.cache
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.g.resources
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.Properties.Resources.resources
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.csproj.GenerateResource.Cache
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.exe
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.pdb
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\Login.baml
+D:\C#\DataBaseDesignCourse\DataBaseDesignCourse\obj\Debug\Login.g.cs
+C:\Documents and Settings\Administrator\桌面\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.exe
+C:\Documents and Settings\Administrator\桌面\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.pdb
+C:\Documents and Settings\Administrator\桌面\DataBaseDesignTest\DataBaseDesignCourse\bin\Debug\DataBaseDesignCourse.exe.config
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\bin\Debug\DataBaseDesignCourse.exe.config
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.exe
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.pdb
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\ResolveAssemblyReference.cache
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\Login.baml
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\Window1.baml
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\Login.g.cs
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\Window1.g.cs
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\App.g.cs
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse_MarkupCompile.cache
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.g.resources
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.Properties.Resources.resources
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\obj\Debug\DataBaseDesignCourse.csproj.GenerateResource.Cache
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\bin\Debug\DataBaseDesignCourse.exe
+D:\我的文档\Visual Studio 2008\Projects\DataBaseDesignTest\DataBaseDesignCourse\bin\Debug\DataBaseDesignCourse.pdb
