@@ -50,28 +50,25 @@ namespace DataBaseDesignCourse.Entitys
         //you must override this function so that you can fill the object
         public override void fillData(SqlDataReader reader)
         {
-            if (reader.Read())
+            ID = (string)reader.GetValue(0);
+            name = (string)reader.GetValue(1);
+            gender = (string)reader.GetValue(2);
+            hometown = (string)reader.GetValue(3);
+            address = (string)reader.GetValue(4);
+            telephone = (string)reader.GetValue(5);
+            birthday = (DateTime)reader.GetValue(6);
+            crimestatus = (string)reader.GetValue(7);
+            if (reader[8].GetType() != typeof(DBNull))
             {
-                ID = (string)reader.GetValue(0);
-                name = (string)reader.GetValue(1);
-                gender = (string)reader.GetValue(2);
-                hometown = (string)reader.GetValue(3);
-                address = (string)reader.GetValue(4);
-                telephone = (string)reader.GetValue(5);
-                birthday = (DateTime)reader.GetValue(6);
-                crimestatus = (string)reader.GetValue(7);
-                if (reader[8].GetType() != typeof(DBNull))
-                {
-                    byte[] bs = (byte[])reader[8];
-                    MemoryStream memoryStream = new MemoryStream(bs);
-                    photo = new Bitmap(memoryStream);
-                }
-                else
-                {
-                    photo = null;
-                }
-                tax = (int)reader.GetValue(9);
+                byte[] bs = (byte[])reader[8];
+                MemoryStream memoryStream = new MemoryStream(bs);
+                photo = new Bitmap(memoryStream);
             }
+            else
+            {
+                photo = null;
+            }
+            tax = (int)reader.GetValue(9);
         }
 
         public override string getMergeSQL()
@@ -121,110 +118,120 @@ namespace DataBaseDesignCourse.Entitys
                 sql += (bys + ",");
             }
             sql += tax;
-
             return sql;
         }
         /***********************************/
         /* there are Set / Get functions   */
         /***********************************/
-        public void setID(string ID)
+        public string PKID
         {
-            this.ID = ID;
+            set
+            {
+                ID = value;
+            }
+            get
+            {
+                return ID;
+            }
         }
-
-        public void setName(string name)
+        public string Name
         {
-            this.name = name;
+            set
+            {
+                Name = value;
+            }
+            get
+            {
+                return name;
+            }
         }
-
-        public void setGender(string gender)
+        public string Gender
         {
-            this.gender = gender;
+            set
+            {
+                gender = value;
+            }
+            get
+            {
+                return gender;
+            }
         }
-
-        public void setHometown(string hometown)
+        public string Hometown
         {
-            this.hometown = hometown;
+            set
+            {
+                hometown = value;
+            }
+            get
+            {
+                return hometown;
+            }
         }
-
-        public void setAddress(string address)
+        public string Address
         {
-            this.address = address;
+            set
+            {
+                address = value;
+            }
+            get
+            {
+                return address;
+            }
         }
-
-        public void setTelephone(string telephone)
+        public string Telephone
         {
-            this.telephone = telephone;
+            set
+            {
+                telephone = value;
+            }
+            get
+            {
+                return telephone;
+            }
         }
-
-        public void setBirthday(DateTime birthday)
+        public string Birthday
         {
-            this.birthday = birthday;
+            set
+            {
+                birthday = Convert.ToDateTime(value);
+            }
+            get
+            {
+                return birthday.ToShortDateString();
+            }
         }
-
-        public void setCrimestatus(string crimestatus)
+        public string Crimestatus
         {
-            this.crimestatus = crimestatus;
+            set
+            {
+                crimestatus = value;
+            }
+            get
+            {
+                return crimestatus;
+            }
         }
-
-        public void setPhoto(Bitmap photo)
+        public Bitmap Photo
         {
-            this.photo = photo;
+            set
+            {
+                photo = value;
+            }
+            get
+            {
+                return photo;
+            }
         }
-
-        public void setTax(int tax)
+        public int Tax
         {
-            this.tax = tax;
-        }
-
-        public string getID()
-        {
-            return ID;
-        }
-
-        public string getName()
-        {
-            return name;
-        }
-
-        public string getGender()
-        {
-            return gender;
-        }
-
-        public string getHometown()
-        {
-            return hometown;
-        }
-
-        public string getAddress()
-        {
-            return address;
-        }
-
-        public string getTelephone()
-        {
-            return telephone;
-        }
-
-        public DateTime getBirthday()
-        {
-            return birthday;
-        }
-
-        public string getCrimestatus()
-        {
-            return crimestatus;
-        }
-
-        public Bitmap getPhoto()
-        {
-            return photo;
-        }
-
-        public int getTax()
-        {
-            return tax;
+            set
+            {
+                tax = value;
+            }
+            get
+            {
+                return tax;
+            }
         }
     }
 }

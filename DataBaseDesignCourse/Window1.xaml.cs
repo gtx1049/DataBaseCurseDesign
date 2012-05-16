@@ -25,8 +25,13 @@ namespace DataBaseDesignCourse
             DataManager ins = DataManager.createInstance();
             Citizen c = (Citizen)ins.FindbyPrimaryKey(Citizen.getClass(), "210703199104272017");
             Citizen c2 = (Citizen)ins.FindbyPrimaryKey(Citizen.getClass(), "130824199005210010");
-            c.getID();
-            c2.getID();
+            string s = c.PKID;
+            //c2.getID();
+
+
+
+            
+            
             // 在此点之下插入创建对象所需的代码。
 		}
 
@@ -38,6 +43,19 @@ namespace DataBaseDesignCourse
         private void ListView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            DataManager ins = DataManager.createInstance();
+            List<Entity> cs = ins.FindAll(Citizen.getClass());
+            List<Citizen> cns = new List<Citizen>();
+            for (int i = 0; i < cs.Count; i++)
+            {
+                Citizen ci = (Citizen)cs[i];
+                cns.Add(ci);
+            }
+            CitizenList.ItemsSource = cns;
         }
 	}
 }

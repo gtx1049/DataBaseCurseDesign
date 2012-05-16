@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using DataBaseDesignCourse.Entitys;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace DataBaseDesignCourse
 {
@@ -50,6 +51,15 @@ namespace DataBaseDesignCourse
                     connection.Open();
                     SqlCommand cmd = new SqlCommand(sql, connection);
                     SqlDataReader reader = cmd.ExecuteReader();
+                    if (reader.Read())
+                    {
+                        theentity.fillData(reader);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    reader.Close();
                 }
                 catch (System.Exception ex)
                 {
@@ -69,7 +79,15 @@ namespace DataBaseDesignCourse
                     connection.Open();
                     SqlCommand cmd = new SqlCommand(sql, connection);
                     SqlDataReader reader = cmd.ExecuteReader();
-                    theentity.fillData(reader);
+                    if (reader.Read())
+                    {
+                        theentity.fillData(reader);
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                    reader.Close();
                 }
                 catch (System.Exception ex)
                 {
@@ -81,6 +99,44 @@ namespace DataBaseDesignCourse
                 }
             }
             return theentity;
+        }
+
+        public List<Entity> FindAll(string type)
+        {
+            Type table = Type.GetType(type);
+            Entity theentity = (Entity)System.Activator.CreateInstance(table);
+
+            string sql = "select * from " + theentity.getTableName();
+
+            List<Entity> list = new List<Entity>();
+
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(sql, connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    
+                    object o = System.Activator.CreateInstance(table);
+                    Entity e = (Entity)o;
+                    e.fillData(reader);
+                    list.Add(e);
+                }
+                
+                reader.Close();
+                return list;
+            }
+            catch (System.Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                return null;
+            }
+            finally
+            {
+                connection.Close();
+            }
+            
         }
 
         public bool Merge(Entity e)
@@ -130,6 +186,31 @@ namespace DataBaseDesignCourse
             {
                 connection.Close();
             }
+        }
+
+        public bool Delete(Entity e)
+        {
+            string sql = "delete from " + e.getTableName() +
+                         " where " + e.getPrimaryKeyName() + " = ";
+            sql += e.getPrimaryKey();
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(sql, connection);
+                cmd.ExecuteNonQuery();
+                return true;
+            }
+            catch (System.Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                connection.Close();
+                return false;
+            }
+            finally
+            {
+                connection.Close();
+            }
+
         }
     }
 }
