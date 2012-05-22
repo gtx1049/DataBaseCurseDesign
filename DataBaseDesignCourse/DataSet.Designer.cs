@@ -673,7 +673,7 @@ namespace DataBaseDesignCourse {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public accidentRow AddaccidentRow(string address, byte[] time, string accidentcontent, string type, carinfoRow parentcarinfoRowByFK_accident_carinfo) {
+            public accidentRow AddaccidentRow(string address, System.DateTime time, string accidentcontent, string type, carinfoRow parentcarinfoRowByFK_accident_carinfo) {
                 accidentRow rowaccidentRow = ((accidentRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -724,7 +724,7 @@ namespace DataBaseDesignCourse {
                 base.Columns.Add(this.columnaccidentID);
                 this.columnaddress = new global::System.Data.DataColumn("address", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnaddress);
-                this.columntime = new global::System.Data.DataColumn("time", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                this.columntime = new global::System.Data.DataColumn("time", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntime);
                 this.columnaccidentcontent = new global::System.Data.DataColumn("accidentcontent", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnaccidentcontent);
@@ -742,7 +742,7 @@ namespace DataBaseDesignCourse {
                 this.columnaccidentID.Unique = true;
                 this.columnaddress.AllowDBNull = false;
                 this.columnaddress.MaxLength = 50;
-                this.columntime.ReadOnly = true;
+                this.columntime.AllowDBNull = false;
                 this.columnaccidentcontent.AllowDBNull = false;
                 this.columnaccidentcontent.MaxLength = 2147483647;
                 this.columntype.AllowDBNull = false;
@@ -1861,7 +1861,7 @@ namespace DataBaseDesignCourse {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public casesRow AddcasesRow(string casetype, string casedescribe, string casestatus, string caseaddress, byte[] time) {
+            public casesRow AddcasesRow(string casetype, string casedescribe, string casestatus, string caseaddress, System.DateTime time) {
                 casesRow rowcasesRow = ((casesRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         null,
@@ -1915,7 +1915,7 @@ namespace DataBaseDesignCourse {
                 base.Columns.Add(this.columncasestatus);
                 this.columncaseaddress = new global::System.Data.DataColumn("caseaddress", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columncaseaddress);
-                this.columntime = new global::System.Data.DataColumn("time", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                this.columntime = new global::System.Data.DataColumn("time", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columntime);
                 this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
                                 this.columncaseID}, true));
@@ -1933,7 +1933,7 @@ namespace DataBaseDesignCourse {
                 this.columncasestatus.MaxLength = 4;
                 this.columncaseaddress.AllowDBNull = false;
                 this.columncaseaddress.MaxLength = 50;
-                this.columntime.ReadOnly = true;
+                this.columntime.AllowDBNull = false;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -3306,14 +3306,9 @@ namespace DataBaseDesignCourse {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public byte[] time {
+            public System.DateTime time {
                 get {
-                    try {
-                        return ((byte[])(this[this.tableaccident.timeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“accident”中列“time”的值为 DBNull。", e);
-                    }
+                    return ((global::System.DateTime)(this[this.tableaccident.timeColumn]));
                 }
                 set {
                     this[this.tableaccident.timeColumn] = value;
@@ -3358,16 +3353,6 @@ namespace DataBaseDesignCourse {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_accident_carinfo"]);
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IstimeNull() {
-                return this.IsNull(this.tableaccident.timeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SettimeNull() {
-                this[this.tableaccident.timeColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3686,28 +3671,13 @@ namespace DataBaseDesignCourse {
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public byte[] time {
+            public System.DateTime time {
                 get {
-                    try {
-                        return ((byte[])(this[this.tablecases.timeColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("表“cases”中列“time”的值为 DBNull。", e);
-                    }
+                    return ((global::System.DateTime)(this[this.tablecases.timeColumn]));
                 }
                 set {
                     this[this.tablecases.timeColumn] = value;
                 }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public bool IstimeNull() {
-                return this.IsNull(this.tablecases.timeColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            public void SettimeNull() {
-                this[this.tablecases.timeColumn] = global::System.Convert.DBNull;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -4513,33 +4483,40 @@ namespace DataBaseDesignCourse.DataSetTableAdapters {
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[accident] WHERE (([accidentID] = @Original_accidentID) AND ([t" +
-                "ime] = @Original_time))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[accident] WHERE (([accidentID] = @Original_accidentID) AND ([a" +
+                "ddress] = @Original_address) AND ([time] = @Original_time) AND ([type] = @Origin" +
+                "al_type) AND ([carID] = @Original_carID))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_accidentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "accidentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_time", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_address", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "address", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_time", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_type", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_carID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = "INSERT INTO [dbo].[accident] ([address], [accidentcontent], [type], [carID]) VALU" +
-                "ES (@address, @accidentcontent, @type, @carID);\r\nSELECT accidentID, address, tim" +
-                "e, accidentcontent, type, carID FROM accident WHERE (accidentID = SCOPE_IDENTITY" +
-                "())";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[accident] ([address], [time], [accidentcontent], [type], [carID]) VALUES (@address, @time, @accidentcontent, @type, @carID);
+SELECT accidentID, address, time, accidentcontent, type, carID FROM accident WHERE (accidentID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@address", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@time", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@accidentcontent", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "accidentcontent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@carID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[accident] SET [address] = @address, [accidentcontent] = @accidentcontent, [type] = @type, [carID] = @carID WHERE (([accidentID] = @Original_accidentID) AND ([time] = @Original_time));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[accident] SET [address] = @address, [time] = @time, [accidentcontent] = @accidentcontent, [type] = @type, [carID] = @carID WHERE (([accidentID] = @Original_accidentID) AND ([address] = @Original_address) AND ([time] = @Original_time) AND ([type] = @Original_type) AND ([carID] = @Original_carID));
 SELECT accidentID, address, time, accidentcontent, type, carID FROM accident WHERE (accidentID = @accidentID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@address", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@time", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@accidentcontent", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "accidentcontent", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@type", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@carID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_accidentID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "accidentID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_time", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_address", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "address", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_time", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_type", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "type", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_carID", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "carID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@accidentID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "accidentID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -4608,13 +4585,26 @@ SELECT accidentID, address, time, accidentcontent, type, carID FROM accident WHE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_accidentID, byte[] Original_time) {
+        public virtual int Delete(int Original_accidentID, string Original_address, System.DateTime Original_time, string Original_type, string Original_carID) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_accidentID));
-            if ((Original_time == null)) {
-                throw new global::System.ArgumentNullException("Original_time");
+            if ((Original_address == null)) {
+                throw new global::System.ArgumentNullException("Original_address");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((byte[])(Original_time));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_address));
+            }
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_time));
+            if ((Original_type == null)) {
+                throw new global::System.ArgumentNullException("Original_type");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_type));
+            }
+            if ((Original_carID == null)) {
+                throw new global::System.ArgumentNullException("Original_carID");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_carID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4635,30 +4625,31 @@ SELECT accidentID, address, time, accidentcontent, type, carID FROM accident WHE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string address, string accidentcontent, string type, string carID) {
+        public virtual int Insert(string address, System.DateTime time, string accidentcontent, string type, string carID) {
             if ((address == null)) {
                 throw new global::System.ArgumentNullException("address");
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(address));
             }
+            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(time));
             if ((accidentcontent == null)) {
                 throw new global::System.ArgumentNullException("accidentcontent");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[1].Value = ((string)(accidentcontent));
+                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(accidentcontent));
             }
             if ((type == null)) {
                 throw new global::System.ArgumentNullException("type");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[2].Value = ((string)(type));
+                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(type));
             }
             if ((carID == null)) {
                 throw new global::System.ArgumentNullException("carID");
             }
             else {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((string)(carID));
+                this.Adapter.InsertCommand.Parameters[4].Value = ((string)(carID));
             }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -4679,39 +4670,53 @@ SELECT accidentID, address, time, accidentcontent, type, carID FROM accident WHE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string address, string accidentcontent, string type, string carID, int Original_accidentID, byte[] Original_time, int accidentID) {
+        public virtual int Update(string address, System.DateTime time, string accidentcontent, string type, string carID, int Original_accidentID, string Original_address, System.DateTime Original_time, string Original_type, string Original_carID, int accidentID) {
             if ((address == null)) {
                 throw new global::System.ArgumentNullException("address");
             }
             else {
                 this.Adapter.UpdateCommand.Parameters[0].Value = ((string)(address));
             }
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(time));
             if ((accidentcontent == null)) {
                 throw new global::System.ArgumentNullException("accidentcontent");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(accidentcontent));
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(accidentcontent));
             }
             if ((type == null)) {
                 throw new global::System.ArgumentNullException("type");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(type));
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(type));
             }
             if ((carID == null)) {
                 throw new global::System.ArgumentNullException("carID");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(carID));
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(carID));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_accidentID));
-            if ((Original_time == null)) {
-                throw new global::System.ArgumentNullException("Original_time");
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_accidentID));
+            if ((Original_address == null)) {
+                throw new global::System.ArgumentNullException("Original_address");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((byte[])(Original_time));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_address));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(accidentID));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((System.DateTime)(Original_time));
+            if ((Original_type == null)) {
+                throw new global::System.ArgumentNullException("Original_type");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_type));
+            }
+            if ((Original_carID == null)) {
+                throw new global::System.ArgumentNullException("Original_carID");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(Original_carID));
+            }
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(accidentID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -4731,8 +4736,8 @@ SELECT accidentID, address, time, accidentcontent, type, carID FROM accident WHE
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string address, string accidentcontent, string type, string carID, int Original_accidentID, byte[] Original_time) {
-            return this.Update(address, accidentcontent, type, carID, Original_accidentID, Original_time, Original_accidentID);
+        public virtual int Update(string address, System.DateTime time, string accidentcontent, string type, string carID, int Original_accidentID, string Original_address, System.DateTime Original_time, string Original_type, string Original_carID) {
+            return this.Update(address, time, accidentcontent, type, carID, Original_accidentID, Original_address, Original_time, Original_type, Original_carID, Original_accidentID);
         }
     }
     
@@ -5943,31 +5948,40 @@ SELECT drivinglicence, drivinglicencetype, point, ID FROM carmanager WHERE (driv
             this._adapter.TableMappings.Add(tableMapping);
             this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[cases] WHERE (([caseID] = @Original_caseID) AND ([time] = @Ori" +
-                "ginal_time))";
+            this._adapter.DeleteCommand.CommandText = "DELETE FROM [dbo].[cases] WHERE (([caseID] = @Original_caseID) AND ([casetype] = " +
+                "@Original_casetype) AND ([casestatus] = @Original_casestatus) AND ([caseaddress]" +
+                " = @Original_caseaddress) AND ([time] = @Original_time))";
             this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_caseID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "caseID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_time", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_casetype", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "casetype", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_casestatus", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "casestatus", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_caseaddress", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "caseaddress", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_time", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[cases] ([casetype], [casedescribe], [casestatus], [caseaddress]) VALUES (@casetype, @casedescribe, @casestatus, @caseaddress);
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[cases] ([casetype], [casedescribe], [casestatus], [caseaddress], [time]) VALUES (@casetype, @casedescribe, @casestatus, @caseaddress, @time);
 SELECT caseID, casetype, casedescribe, casestatus, caseaddress, time FROM cases WHERE (caseID = SCOPE_IDENTITY())";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@casetype", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "casetype", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@casedescribe", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "casedescribe", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@casestatus", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "casestatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@caseaddress", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "caseaddress", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@time", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[cases] SET [casetype] = @casetype, [casedescribe] = @casedescribe, [casestatus] = @casestatus, [caseaddress] = @caseaddress WHERE (([caseID] = @Original_caseID) AND ([time] = @Original_time));
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[cases] SET [casetype] = @casetype, [casedescribe] = @casedescribe, [casestatus] = @casestatus, [caseaddress] = @caseaddress, [time] = @time WHERE (([caseID] = @Original_caseID) AND ([casetype] = @Original_casetype) AND ([casestatus] = @Original_casestatus) AND ([caseaddress] = @Original_caseaddress) AND ([time] = @Original_time));
 SELECT caseID, casetype, casedescribe, casestatus, caseaddress, time FROM cases WHERE (caseID = @caseID)";
             this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@casetype", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "casetype", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@casedescribe", global::System.Data.SqlDbType.Text, 0, global::System.Data.ParameterDirection.Input, 0, 0, "casedescribe", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@casestatus", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "casestatus", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@caseaddress", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "caseaddress", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@time", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_caseID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "caseID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_time", global::System.Data.SqlDbType.Timestamp, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_casetype", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "casetype", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_casestatus", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "casestatus", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_caseaddress", global::System.Data.SqlDbType.Char, 0, global::System.Data.ParameterDirection.Input, 0, 0, "caseaddress", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_time", global::System.Data.SqlDbType.DateTime2, 0, global::System.Data.ParameterDirection.Input, 0, 0, "time", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@caseID", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "caseID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
@@ -6037,14 +6051,27 @@ SELECT caseID, casetype, casedescribe, casestatus, caseaddress, time FROM cases 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_caseID, byte[] Original_time) {
+        public virtual int Delete(int Original_caseID, string Original_casetype, string Original_casestatus, string Original_caseaddress, System.DateTime Original_time) {
             this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_caseID));
-            if ((Original_time == null)) {
-                throw new global::System.ArgumentNullException("Original_time");
+            if ((Original_casetype == null)) {
+                throw new global::System.ArgumentNullException("Original_casetype");
             }
             else {
-                this.Adapter.DeleteCommand.Parameters[1].Value = ((byte[])(Original_time));
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_casetype));
             }
+            if ((Original_casestatus == null)) {
+                throw new global::System.ArgumentNullException("Original_casestatus");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_casestatus));
+            }
+            if ((Original_caseaddress == null)) {
+                throw new global::System.ArgumentNullException("Original_caseaddress");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_caseaddress));
+            }
+            this.Adapter.DeleteCommand.Parameters[4].Value = ((System.DateTime)(Original_time));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
             if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6064,7 +6091,7 @@ SELECT caseID, casetype, casedescribe, casestatus, caseaddress, time FROM cases 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(string casetype, string casedescribe, string casestatus, string caseaddress) {
+        public virtual int Insert(string casetype, string casedescribe, string casestatus, string caseaddress, System.DateTime time) {
             if ((casetype == null)) {
                 throw new global::System.ArgumentNullException("casetype");
             }
@@ -6089,6 +6116,7 @@ SELECT caseID, casetype, casedescribe, casestatus, caseaddress, time FROM cases 
             else {
                 this.Adapter.InsertCommand.Parameters[3].Value = ((string)(caseaddress));
             }
+            this.Adapter.InsertCommand.Parameters[4].Value = ((System.DateTime)(time));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6108,7 +6136,7 @@ SELECT caseID, casetype, casedescribe, casestatus, caseaddress, time FROM cases 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string casetype, string casedescribe, string casestatus, string caseaddress, int Original_caseID, byte[] Original_time, int caseID) {
+        public virtual int Update(string casetype, string casedescribe, string casestatus, string caseaddress, System.DateTime time, int Original_caseID, string Original_casetype, string Original_casestatus, string Original_caseaddress, System.DateTime Original_time, int caseID) {
             if ((casetype == null)) {
                 throw new global::System.ArgumentNullException("casetype");
             }
@@ -6133,14 +6161,28 @@ SELECT caseID, casetype, casedescribe, casestatus, caseaddress, time FROM cases 
             else {
                 this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(caseaddress));
             }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_caseID));
-            if ((Original_time == null)) {
-                throw new global::System.ArgumentNullException("Original_time");
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((System.DateTime)(time));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Original_caseID));
+            if ((Original_casetype == null)) {
+                throw new global::System.ArgumentNullException("Original_casetype");
             }
             else {
-                this.Adapter.UpdateCommand.Parameters[5].Value = ((byte[])(Original_time));
+                this.Adapter.UpdateCommand.Parameters[6].Value = ((string)(Original_casetype));
             }
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((int)(caseID));
+            if ((Original_casestatus == null)) {
+                throw new global::System.ArgumentNullException("Original_casestatus");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Original_casestatus));
+            }
+            if ((Original_caseaddress == null)) {
+                throw new global::System.ArgumentNullException("Original_caseaddress");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Original_caseaddress));
+            }
+            this.Adapter.UpdateCommand.Parameters[9].Value = ((System.DateTime)(Original_time));
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(caseID));
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
             if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -6160,8 +6202,8 @@ SELECT caseID, casetype, casedescribe, casestatus, caseaddress, time FROM cases 
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(string casetype, string casedescribe, string casestatus, string caseaddress, int Original_caseID, byte[] Original_time) {
-            return this.Update(casetype, casedescribe, casestatus, caseaddress, Original_caseID, Original_time, Original_caseID);
+        public virtual int Update(string casetype, string casedescribe, string casestatus, string caseaddress, System.DateTime time, int Original_caseID, string Original_casetype, string Original_casestatus, string Original_caseaddress, System.DateTime Original_time) {
+            return this.Update(casetype, casedescribe, casestatus, caseaddress, time, Original_caseID, Original_casetype, Original_casestatus, Original_caseaddress, Original_time, Original_caseID);
         }
     }
     

@@ -5,7 +5,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
-using System.Drawing.Imaging;
+using System.Windows.Media.Imaging;
 
 namespace DataBaseDesignCourse.Entitys
 {
@@ -19,7 +19,7 @@ namespace DataBaseDesignCourse.Entitys
         private string telephone;
         private DateTime birthday;
         private string crimestatus;
-        private Bitmap photo;
+        private BitmapImage photo;
         private int tax;
 
         //every Entity class have its own type
@@ -47,6 +47,11 @@ namespace DataBaseDesignCourse.Entitys
         {
             return "'" + ID + "'";
         }
+
+        public override string getForeignKeyName()
+        {
+            return "*";
+        }
         //you must override this function so that you can fill the object
         public override void fillData(SqlDataReader reader)
         {
@@ -62,7 +67,16 @@ namespace DataBaseDesignCourse.Entitys
             {
                 byte[] bs = (byte[])reader[8];
                 MemoryStream memoryStream = new MemoryStream(bs);
-                photo = new Bitmap(memoryStream);
+                memoryStream.Seek(0, System.IO.SeekOrigin.Begin);
+
+                photo = new BitmapImage();
+                photo.BeginInit();
+
+                photo.CacheOption = BitmapCacheOption.OnLoad;
+                photo.StreamSource = memoryStream;
+                photo.EndInit();
+                photo.Freeze();
+
             }
             else
             {
@@ -85,10 +99,13 @@ namespace DataBaseDesignCourse.Entitys
             
             if(photo != null)
             {
-                MemoryStream stream = new MemoryStream();
-                photo.Save(stream, ImageFormat.Png);
-                byte[] bys = stream.ToArray();
-                sql += ("photo=" + bys + ",");
+                byte[] imageData = new byte[photo.StreamSource.Length];
+                photo.StreamSource.Seek(0, System.IO.SeekOrigin.Begin);
+                photo.StreamSource.Read(imageData, 0, imageData.Length);
+
+                
+
+                sql += ("photo=" + bytetoString(imageData) + ",");
             }
             sql += ("tax=" + tax);
 
@@ -112,13 +129,50 @@ namespace DataBaseDesignCourse.Entitys
             }
             else
             {
-                MemoryStream stream = new MemoryStream();
-                photo.Save(stream, ImageFormat.Png);
-                byte[] bys = stream.ToArray();
-                sql += (bys + ",");
+                byte[] imageData = new byte[photo.StreamSource.Length];
+                photo.StreamSource.Seek(0, System.IO.SeekOrigin.Begin);
+                photo.StreamSource.Read(imageData, 0, imageData.Length);
+
+                sql += (bytetoString(imageData) + ",");
             }
             sql += tax;
             return sql;
+        }
+        //convert the byte array to 0x string, reference to the net
+        private string bytetoString(byte[] bs)
+        {
+            string  hexstr = "0x";
+            for (int i=0; i < bs.Length; i++)
+            {
+                char hex1;
+                char hex2;
+                int value = bs[i]; //直接将unsigned char赋值给整型的值，系统会正动强制转换
+                int v1 = value/16;
+                int v2 = value % 16;
+
+                //将商转成字母
+                if (v1 >= 0 && v1 <= 9)
+                {
+                    hex1 = (char)(48 + v1);
+                }
+                else
+                {
+                    hex1 = (char)(55 + v1);
+                }
+                //将余数转成字母
+                if (v2 >= 0 && v2 <= 9)
+                {
+                    hex2 = (char)(48 + v2);
+                }
+                else
+                {
+                    hex2 = (char)(55 + v2);
+                }
+                //将字母连接成串
+                hexstr = hexstr + hex1 + hex2;
+            }
+            return hexstr;
+
         }
         /***********************************/
         /* there are Set / Get functions   */
@@ -211,7 +265,7 @@ namespace DataBaseDesignCourse.Entitys
                 return crimestatus;
             }
         }
-        public Bitmap Photo
+        public BitmapImage Photo
         {
             set
             {

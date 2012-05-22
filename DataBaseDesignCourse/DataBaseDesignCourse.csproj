@@ -84,8 +84,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Entitys\Accident.cs" />
+    <Compile Include="Entitys\Carinfo.cs" />
+    <Compile Include="Entitys\Carmanager.cs" />
+    <Compile Include="Entitys\Cases.cs" />
     <Compile Include="Entitys\Citizen.cs" />
+    <Compile Include="Entitys\Crimerate.cs" />
     <Compile Include="Entitys\Entity.cs" />
+    <Compile Include="Entitys\Police.cs" />
+    <Compile Include="Entitys\Publicplace.cs" />
+    <Compile Include="GlobalFunc\Process.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>

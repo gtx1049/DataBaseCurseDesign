@@ -28,6 +28,12 @@ namespace DataBaseDesignCourse.Entitys
         {
             return "*";
         }
+
+        public virtual string getForeignKeyName()
+        {
+            return "*";
+        }
+
         //use SqlDataReader to fill one Entity
         public virtual void fillData(SqlDataReader reader)
         {
