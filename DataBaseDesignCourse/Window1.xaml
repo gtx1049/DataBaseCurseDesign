@@ -13,32 +13,32 @@
 					<StackPanel Height="105.163" Margin="4,1.665,8,0" VerticalAlignment="Top" Orientation="Horizontal">
 						<GroupBox Header="模糊查询" Height="105.163" Background="White" Width="482" MaxWidth="482" HorizontalAlignment="Left">
 							<Canvas Margin="0,0,-4,-2.837">
-								<ComboBox Height="20" HorizontalAlignment="Left" Width="101.334" Canvas.Left="360.833" Canvas.Top="6.996"/>
-								<TextBox Height="20" TextWrapping="Wrap" Width="93.667" Canvas.Left="72.583" Canvas.Top="6.996"/>
+								<ComboBox Height="20" HorizontalAlignment="Left" Width="101.334" Canvas.Left="360.833" Canvas.Top="6.996" Name="QueryHometown" />
+								<TextBox Height="20" TextWrapping="Wrap" Width="93.667" Canvas.Left="72.583" Canvas.Top="6.996" Name="QueryCitizenName" />
 								<TextBlock Height="20" TextWrapping="Wrap" Width="36" Canvas.Left="32.583" Canvas.Top="6.996"><Run Language="zh-cn" Text="姓名："/></TextBlock>
 								<TextBlock Height="20" TextWrapping="Wrap" Width="36" Canvas.Left="183.25" Canvas.Top="6.996"><Run Language="zh-cn" Text="性别："/><LineBreak/><Run Language="zh-cn"/></TextBlock>
-								<RadioButton Content="男" Height="20" Width="47.25" Canvas.Left="223.252" Canvas.Top="6.996"/>
-								<RadioButton Content="女" Height="20" Width="47.25" Canvas.Left="270.502" Canvas.Top="6.996"/>
+								<RadioButton Content="男" Height="20" Width="47.25" Canvas.Left="223.252" Canvas.Top="6.996" Name="QueryCitizenBoy" />
+								<RadioButton Content="女" Height="20" Width="47.25" Canvas.Left="270.502" Canvas.Top="6.996" Name="QueryCitizenGirl" />
 								<TextBlock Height="20" TextWrapping="Wrap" Width="36" RenderTransformOrigin="1.127,0.517" Canvas.Left="323.924" Canvas.Top="6.996"><Run Language="zh-cn" Text="籍贯："/></TextBlock>
-								<Button Content="查询" Height="23" Width="58" RenderTransformOrigin="0.759,0.947" Canvas.Left="404.167" Canvas.Top="54.163"/>
+								<Button Content="查询" Height="23" Width="58" RenderTransformOrigin="0.759,0.947" Canvas.Left="404.167" Canvas.Top="54.163" Name="QueryAbout" Click="QueryAboutClick" />
 								<TextBlock Height="20" TextWrapping="Wrap" Width="36" Canvas.Left="183.25" Canvas.Top="54.163"><Run Language="zh-cn" Text="电话："/></TextBlock>
-								<TextBox Height="20" TextWrapping="Wrap" Width="93.667" Canvas.Left="223.25" Canvas.Top="54.163"/>
+								<TextBox Height="20" TextWrapping="Wrap" Width="93.667" Canvas.Left="223.25" Canvas.Top="54.163" Name="QueryCitizenPhone" />
 								<TextBlock Height="20" TextWrapping="Wrap" Width="36" Canvas.Left="183.25" Canvas.Top="30.996"><Run Language="zh-cn" Text="住址："/></TextBlock>
-								<TextBox Height="20" TextWrapping="Wrap" Width="238.915" Canvas.Left="223.252" Canvas.Top="30.996"/>
+								<TextBox Height="20" TextWrapping="Wrap" Width="238.915" Canvas.Left="223.252" Canvas.Top="30.996" Name="QueryCitizenAddress" />
 								<TextBlock Height="20" TextWrapping="Wrap" Width="60.583" Canvas.Left="8" Canvas.Top="54.996"><Run Language="zh-cn" Text="犯罪记录："/></TextBlock>
-								<RadioButton Content="有" Height="20" Width="33.25" Canvas.Left="73.583" Canvas.Top="55.163"/>
-								<RadioButton Content="无" Height="20" Width="33.25" Canvas.Left="124" Canvas.Top="54.996"/>
+								<RadioButton Content="有" Height="20" Width="33.25" Canvas.Left="73.583" Canvas.Top="55.163" Name="QueryHasCrimeYes" />
+								<RadioButton Content="无" Height="20" Width="33.25" Canvas.Left="124" Canvas.Top="54.996" Name="QueryHasCrimeNo" />
 								<TextBlock Height="20" TextWrapping="Wrap" Width="60.583" Canvas.Left="8" Canvas.Top="30.996"><Run Language="zh-cn" Text="出生日期："/></TextBlock>
-								<ListBox Height="19.335" Canvas.Left="73.5" Canvas.Top="31.661" Width="92.75"/>
+								<ListBox Height="19.335" Canvas.Left="73.5" Canvas.Top="31.661" Width="92.75" Name="QueryCitizenBirthday" />
 							</Canvas>
 						</GroupBox>
 						<GroupBox Header="精确查询" HorizontalAlignment="Right" Margin="0,0,6,0" Width="277.333" Background="White">
 							<Grid Margin="0,0,2,1.326" HorizontalAlignment="Right" Width="253.333">
 								<TextBlock Height="20" TextWrapping="Wrap" Margin="8,8,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="64.25"><Run Language="zh-cn" Text="证件类型："/></TextBlock>
-								<ComboBox Height="20" Margin="71.25,7,93.083,0" VerticalAlignment="Top"/>
-								<TextBox TextWrapping="Wrap" Margin="72.25,32,8,30.665"/>
+								<ComboBox Height="20" Margin="71.25,7,93.083,0" VerticalAlignment="Top" Name="QueryIDtype" />
+								<TextBox TextWrapping="Wrap" Margin="72.25,32,8,30.665" Name="QueryID" />
 								<TextBlock TextWrapping="Wrap" Width="48.25" TextAlignment="Center" HorizontalAlignment="Left" Margin="19,33,0,29.665"><Run Language="zh-cn" Text="证件号："/></TextBlock>
-								<Button Content="查询" Height="23" Width="58" RenderTransformOrigin="0.759,0.947" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,8,0" Click="Button_Click" />
+								<Button Content="查询" Height="23" Width="58" RenderTransformOrigin="0.759,0.947" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,8,0" Click="AccurateQueryClick" Name="AccurateQuery" />
 							</Grid>
 						</GroupBox>
 					</StackPanel>
@@ -126,14 +126,14 @@
                     <GroupBox Header="查询" Height="94.538" Margin="4.313,1.625,197,0" VerticalAlignment="Top" Background="White">
                         <Grid Margin="0,0,2.333,1.829">
                             <TextBlock HorizontalAlignment="Left" Margin="9.354,8.704,0,0" TextWrapping="Wrap" Width="63.333" Height="14.667" VerticalAlignment="Top"><Run Language="zh-cn" Text="案件编号："/></TextBlock>
-                            <TextBox HorizontalAlignment="Left" Height="21.202" Margin="70.687,6.668,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="95.333"/>
+                            <TextBox HorizontalAlignment="Left" Height="21.202" Margin="70.687,6.668,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="95.333" Name="QueryCaseID" />
                             <TextBlock HorizontalAlignment="Left" Margin="9.354,0,0,15.501" TextWrapping="Wrap" Width="63.333" Height="14.667" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="案发地点："/></TextBlock>
-                            <TextBox Height="21.202" Margin="70.687,0,127.667,11.002" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Bottom"/>
+                            <TextBox Height="21.202" Margin="70.687,0,127.667,11.002" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Name="QueryCaseAddress" />
                             <TextBlock HorizontalAlignment="Left" Margin="186.687,7.74,0,0" TextWrapping="Wrap" Width="63.333" Height="14.667" VerticalAlignment="Top"><Run Language="zh-cn" Text="案件类型："/></TextBlock>
-                            <ComboBox Height="20.502" Margin="248.686,6.701,216.335,0" VerticalAlignment="Top"/>
+                            <ComboBox Height="20.502" Margin="248.686,6.701,216.335,0" VerticalAlignment="Top" Name="QueryCaseType" />
                             <TextBlock HorizontalAlignment="Right" Margin="0,9.668,127.667,0" TextWrapping="Wrap" Width="63.333" Height="14.667" VerticalAlignment="Top"><Run Language="zh-cn" Text="案发时间："/></TextBlock>
-                            <TextBox Height="21.202" Margin="0,6.668,8,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" HorizontalAlignment="Right" Width="119.667"/>
-                            <Button Content="查询" HorizontalAlignment="Right" Margin="0,34.668,8,11.002" Width="67.167"/>
+                            <TextBox Height="21.202" Margin="0,6.668,8,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Right" Width="119.667" Name="QueryCaseTime" />
+                            <Button Content="查询" HorizontalAlignment="Right" Margin="0,34.668,8,11.002" Width="67.167" Name="CaseQuery" Click="CaseQueryClick" />
                         </Grid>
                     </GroupBox>
                     <ListView Margin="4.313,109.663,357.25,8" Name="CasesList" SelectionChanged="CasesListSelectionChanged">
@@ -221,10 +221,10 @@
 					<GroupBox Header="查询" Height="94.205" VerticalAlignment="Top" Background="White" Margin="5.375,1.833,418,0">
 						<Grid Margin="2,0,2,3.037">
 							<TextBlock HorizontalAlignment="Left" Margin="30,14.038,0,0" TextWrapping="Wrap" Width="41" Height="16.121" VerticalAlignment="Top"><Run Language="zh-cn" Text="车号："/></TextBlock>
-							<TextBlock HorizontalAlignment="Left" Margin="6,0,0,11.051" TextWrapping="Wrap" Width="63" Height="16.121" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="车主姓名："/></TextBlock>
-							<TextBox Margin="66,12.37,89.959,0" TextWrapping="Wrap" Text="TextBox" Height="20.79" VerticalAlignment="Top"/>
-							<TextBox Margin="66,0,89.959,8.214" TextWrapping="Wrap" Text="TextBox" Height="20.791" VerticalAlignment="Bottom"/>
-							<Button Content="查询" HorizontalAlignment="Right" Margin="0,5.16,14.995,3.171" Width="60"/>
+							<TextBlock HorizontalAlignment="Left" Margin="17.776,0,0,11.051" TextWrapping="Wrap" Width="63" Height="16.121" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="车主ID："/></TextBlock>
+							<TextBox Margin="66,12.37,89.959,0" TextWrapping="Wrap" Text="" Height="20.79" VerticalAlignment="Top" Name="QueryCarID" />
+							<TextBox Margin="66,0,89.959,8.214" TextWrapping="Wrap" Text="" Height="20.791" VerticalAlignment="Bottom" Name="QueryManagerName" />
+							<Button Content="查询" HorizontalAlignment="Right" Margin="0,5.16,14.995,3.171" Width="60" Name="QueryCarinfo" Click="QueryCarinfoClick" />
 						</Grid>
 					</GroupBox>
 					<ListView Margin="5.375,110.163,418,78" Name="CarList" SelectionChanged="CarListSelectionChanged">
@@ -238,15 +238,15 @@
 					</ListView>
 					<GroupBox Header="车主信息" Margin="0,165,213.5,0" Background="White" HorizontalAlignment="Right" Width="196" Height="186.164" VerticalAlignment="Top">
 						<Grid Margin="2.5,2.327,2,3">
-							<Grid HorizontalAlignment="Right" Height="100" Margin="0,19,4,0" VerticalAlignment="Top" Width="80" Background="#FFFFF6DE" d:LayoutOverrides="HorizontalAlignment"/>
+							<Grid HorizontalAlignment="Right" Height="100" Margin="0,19,4,0" VerticalAlignment="Top" Width="80" Background="#FFFFF6DE" d:LayoutOverrides="HorizontalAlignment" Name="CarManagerPhoto" />
 							<TextBlock Margin="8.5,156,0,24.001" TextWrapping="Wrap" HorizontalAlignment="Left" Width="73"><Run Language="zh-cn" Text="地址："/></TextBlock>
 							<Button Content="查看身份证" Height="20.313" Margin="0,0,4,8" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="80" d:LayoutOverrides="HorizontalAlignment"/>
 							<TextBlock Margin="6.5,18.505,0,0" TextWrapping="Wrap" Height="18" VerticalAlignment="Top" HorizontalAlignment="Left" Width="40.667"><Run Language="zh-cn" Text="姓名："/></TextBlock>
-							<TextBox Height="19" Margin="6.5,37.505,89.667,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" IsEnabled="False"/>
-							<TextBox Margin="47.167,69.505,89.667,69.496" TextWrapping="Wrap" Text="TextBox" IsEnabled="False"/>
+							<TextBox Height="19" Margin="6.5,37.505,89.667,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" IsEnabled="False" Name="CarManagerName" />
+							<TextBox Margin="47.167,69.505,89.667,69.496" TextWrapping="Wrap" Text="" IsEnabled="False" Name="CarManagerAge" />
 							<TextBlock Margin="6.5,69.505,0,70.496" TextWrapping="Wrap" HorizontalAlignment="Left" Width="36.667"><Run Language="zh-cn" Text="年龄："/></TextBlock>
 							<TextBlock Margin="6.5,0,0,37.997" TextWrapping="Wrap" HorizontalAlignment="Left" Width="36.667" Height="17.999" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="籍贯："/></TextBlock>
-							<TextBox Margin="47.167,0,89.667,38.997" TextWrapping="Wrap" Text="TextBox" IsEnabled="False" Height="18.999" VerticalAlignment="Bottom"/>
+							<TextBox Margin="47.167,0,89.667,38.997" TextWrapping="Wrap" Text="" IsEnabled="False" Height="18.999" VerticalAlignment="Bottom" Name="CarManagerHome" />
 							<Button Content="查看驾照" Height="20.313" Margin="0,0,89.667,8" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="83.333"/>
 						</Grid>
 					</GroupBox>
@@ -290,14 +290,14 @@
 							<TextBlock Margin="52.506,47.539,0,0" TextWrapping="Wrap" HorizontalAlignment="Left" Width="39" Height="18.005" VerticalAlignment="Top"><Run Language="zh-cn" Text="车号："/></TextBlock>
 						</Grid>
 					</GroupBox>
-					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,33.159,36.333,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="280" IsEnabled="False"/>
-					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,65.159,36.333,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="83.333" IsEnabled="False"/>
-					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,93.159,233,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="83.333" IsEnabled="False"/>
-					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,93.159,36.333,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="83.333" IsEnabled="False"/>
-					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,126.492,36.333,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="152.667" IsEnabled="False"/>
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,33.159,36.333,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="280" IsEnabled="False" Name="DisplayCarstyle" />
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,65.159,36.333,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83.333" IsEnabled="False" Name="DisplayCarPurchaseTime" />
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,93.159,233,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83.333" IsEnabled="False" Name="DisplayCarInsurance" />
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,93.159,36.333,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83.333" IsEnabled="False" Name="DisplayLastCheck" />
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,126.492,36.333,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="152.667" IsEnabled="False" Name="DisplayCarRemark" />
 					<GroupBox Header="针对驾照和车辆操作" Margin="0,169,8,0" Background="#FFE0E0E0" HorizontalAlignment="Right" Width="201.5" Height="182.164" VerticalAlignment="Top">
 						<Grid Margin="0,3.163,2,2">
-							<Button Content="修改车辆信息" Height="25.164" Margin="0,8,68.667,0" VerticalAlignment="Top">
+							<Button Content="修改车辆信息" Height="25.164" Margin="0,8,1.834,0" VerticalAlignment="Top">
 								<Button.Background>
 									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
 										<GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -329,15 +329,7 @@
 									</LinearGradientBrush>
 								</Button.Background>
 							</Button>
-							<Button Content="确定" Height="25.164" Margin="0,8,1.834,0" VerticalAlignment="Top" HorizontalAlignment="Right" Width="62.833">
-								<Button.Background>
-									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
-										<GradientStop Color="#FFF3F3F3" Offset="0"/>
-										<GradientStop Color="#FF309931" Offset="1"/>
-									</LinearGradientBrush>
-								</Button.Background>
-							</Button>
-							<Button Content="增加事故记录" Margin="0,0,0,8" Height="25.163" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="92.833">
+                            <Button Content="增加事故记录" Margin="0,0,0,8" Height="25.163" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="92.833">
 								<Button.Background>
 									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
 										<GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -363,26 +355,30 @@
 							</Button>
 						</Grid>
 					</GroupBox>
-					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,126.492,233,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="83.333" IsEnabled="False"/>
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,126.492,233,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83.333" IsEnabled="False" Name="DisplayCarStatus" />
 					<GroupBox Header="违章情况" Margin="0,355.164,213.5,3" Background="White" HorizontalAlignment="Right" Width="197.5">
-						<ListView Margin="0,0,3.833,0.827">
+						<ListView Margin="0,0,3.833,0.827" Name="CarBreakRule">
 							<ListView.View>
 								<GridView>
-									<GridViewColumn/>
-								</GridView>
+                                    <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=Time}" Width="50"/>
+                                    <GridViewColumn Header="地点" DisplayMemberBinding="{Binding Path=Address}" Width="50"/>
+                                    <GridViewColumn Header="描述" DisplayMemberBinding="{Binding Path=Accidentcontent}" Width="80"/>
+                                </GridView>
 							</ListView.View>
 						</ListView>
 					</GroupBox>
 					<GroupBox Header="事故情况" Margin="0,355.164,12,3" Background="White" HorizontalAlignment="Right" Width="197.5">
-						<ListView Margin="0,0,0,0.827" HorizontalAlignment="Left" Width="181.667">
+						<ListView Margin="0,0,0,0.827" HorizontalAlignment="Left" Width="181.667" Name="CarAccident">
 							<ListView.View>
 								<GridView>
-									<GridViewColumn/>
-								</GridView>
+                                    <GridViewColumn Header="时间" DisplayMemberBinding="{Binding Path=Time}" Width="50"/>
+                                    <GridViewColumn Header="地点" DisplayMemberBinding="{Binding Path=Address}" Width="50"/>
+                                    <GridViewColumn Header="描述" DisplayMemberBinding="{Binding Path=Accidentcontent}" Width="80"/>
+                                </GridView>
 							</ListView.View>
 						</ListView>
 					</GroupBox>
-					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,65.159,189,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="126.333" IsEnabled="False"/>
+					<TextBox HorizontalAlignment="Right" Height="19" Margin="0,65.159,189,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="126.333" IsEnabled="False" Name="DisplayCarID" />
 				</Grid>
 			</TabItem>
 			<TabItem Header="警力和场所分布">

@@ -108,17 +108,57 @@ namespace DataBaseDesignCourse
             return theentity;
         }
 
-        //You can write your own sql and get it through overwrite Process class
-        public bool exeReadSQL(Process pro)
+        //You can write your sql of one table and get it
+        public List<Entity> exeReadSQL(string type, string condition)
+        {
+            Type table = Type.GetType(type);
+            Entity theentity = (Entity)System.Activator.CreateInstance(table);
+
+            string sql = "select * from " + theentity.getTableName() + " where ";
+
+            sql += condition;
+
+            List<Entity> list = new List<Entity>();
+
+            try
+            {
+                connection.Open();
+                SqlCommand cmd = new SqlCommand(sql, connection);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+
+                    object o = System.Activator.CreateInstance(table);
+                    Entity e = (Entity)o;
+                    e.fillData(reader);
+                    list.Add(e);
+                }
+
+                reader.Close();
+                return list;
+            }
+            catch (System.Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                return null;
+            }
+            finally
+            {
+                connection.Close();
+            }
+        }
+
+        //You can write your own sql and store the data through override Process class
+        public bool exeProcessSQL(Process pro)
         {
             try
-            {              
-                connection.Open();
+            {
                 string sql = pro.getSQL();
                 if (sql == "*")
                 {
                     return false;
                 }
+                connection.Open();
                 SqlCommand cmd = new SqlCommand(sql, connection);
                 SqlDataReader reader = cmd.ExecuteReader();
                 pro.dealReader(reader);

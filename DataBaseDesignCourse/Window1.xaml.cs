@@ -112,11 +112,6 @@ namespace DataBaseDesignCourse
             
             // 在此点之下插入创建对象所需的代码。
 		}
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-           
-        }
         
         /************************************************************************/
         /*                      Operation of Citizen                            */
@@ -198,6 +193,17 @@ namespace DataBaseDesignCourse
             }
         }
 
+        //not accurate query
+        private void QueryAboutClick(object sender, RoutedEventArgs e)
+        {
+            string name = this.QueryCitizenName.Text;
+        }
+
+        //accurate query
+        private void AccurateQueryClick(object sender, RoutedEventArgs e)
+        {
+
+        }
         /************************************************************************/
         /*                      Operation of Cases                              */
         /************************************************************************/
@@ -245,6 +251,11 @@ namespace DataBaseDesignCourse
 
         }
 
+        //query the cases
+        private void CaseQueryClick(object sender, RoutedEventArgs e)
+        {
+
+        }
         /************************************************************************/
         /*                      Operation of Carinfo                            */
         /************************************************************************/
@@ -262,11 +273,19 @@ namespace DataBaseDesignCourse
             this.CarList.ItemsSource = cns;
         }
 
+        //When you select one car item
         private void CarListSelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
         }
-        
-        
+
+        //query the car
+        private void QueryCarinfoClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+                
     }
 }
