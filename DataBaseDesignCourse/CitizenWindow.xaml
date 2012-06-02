@@ -1,0 +1,32 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="d"
+	x:Class="DataBaseDesignCourse.addCitizen"
+	x:Name="Window"
+	Title="公民详细"
+	Width="370" Height="300" MaxWidth="320" MaxHeight="280" MinWidth="360" MinHeight="300">
+
+	<Grid x:Name="LayoutRoot">
+        <TextBlock HorizontalAlignment="Left" Height="21" Margin="41.167,14.998,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38"><Run Language="zh-cn" Text="姓名："/></TextBlock>
+		<TextBlock HorizontalAlignment="Left" Margin="29.667,0,0,38.002" TextWrapping="Wrap" Width="54" Height="21" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="身份证："/></TextBlock>
+		<TextBlock HorizontalAlignment="Left" Height="21" Margin="41.167,43.498,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38"><Run Language="zh-cn" Text="性别："/></TextBlock>
+		<TextBlock HorizontalAlignment="Left" Height="21" Margin="41.167,72.998,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="38"><Run Language="zh-cn" Text="籍贯："/></TextBlock>
+		<TextBlock HorizontalAlignment="Left" Margin="17.167,103.998,0,0" TextWrapping="Wrap" Width="65" Height="22" VerticalAlignment="Top"><Run Language="zh-cn" Text="出生日期："/></TextBlock>
+		<TextBox Height="21" Margin="81.917,13.998,106.083,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Name="CitizenName" />
+		<TextBox Margin="81.417,0,18.833,38.502" TextWrapping="Wrap" Text="" Height="21" VerticalAlignment="Bottom" Name="CitizenID" />
+		<TextBlock HorizontalAlignment="Left" Margin="17.667,129.998,0,111.002" TextWrapping="Wrap" Width="66"><Run Language="zh-cn" Text="电话号码："/></TextBlock>
+		<TextBox Margin="82.167,130.498,105.833,110.502" TextWrapping="Wrap" Text="" Name="CitizenPhone" />
+		<Button Content="确认" HorizontalAlignment="Right" Height="21" Margin="0,0,17.833,6" VerticalAlignment="Bottom" Width="48" Name="sure" Click="OK_Click" />
+		<Button Content="取消" HorizontalAlignment="Right" Height="21" Margin="0,0,74,6" VerticalAlignment="Bottom" Width="48" Name="cancel" Click="cancel_Click" />
+		<Button Content="更新照片" HorizontalAlignment="Right" Margin="0,124.998,19.333,116.002" Width="73.5" Name="changePhoto" Click="changePhoto_Click" />
+		<ComboBox Height="21" Margin="81.417,41.998,106.583,0" VerticalAlignment="Top" Name="CitizenGender" />
+		<ComboBox Height="21" Margin="81.667,70.498,106.333,0" VerticalAlignment="Top" Name="CitizenHome" />
+		<TextBox Height="21" Margin="81.667,102.498,106.333,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Name="CitizenBirthday" />
+		<TextBox Height="40" Margin="81.417,0,18.833,63.502" TextWrapping="Wrap" Text="" VerticalAlignment="Bottom" Name="CitizenAddress" />
+		<TextBlock HorizontalAlignment="Left" Margin="41.667,0,0,82.502" TextWrapping="Wrap" Width="37.5" Height="22" VerticalAlignment="Bottom"><Run Language="zh-cn" Text="地址："/></TextBlock>
+        <Image Height="120" HorizontalAlignment="Right" Margin="0,4,3,0" Name="CitizenPhoto" Stretch="Fill" VerticalAlignment="Top" Width="100" />
+        <TextBlock Text="犯罪情况：" Height="17" HorizontalAlignment="Left" Margin="17,0,0,12" Name="textBlock1" VerticalAlignment="Bottom" Width="75" />
+        <ComboBox Height="20.998" Margin="81.417,0,154,12.002" Name="CitizenCrimestatus" VerticalAlignment="Bottom" />
+    </Grid>
+</Window>

@@ -192,7 +192,7 @@ namespace DataBaseDesignCourse.Entitys
         {
             set
             {
-                Name = value;
+                name = value;
             }
             get
             {

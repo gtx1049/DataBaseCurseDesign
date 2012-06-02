@@ -14,6 +14,14 @@ namespace DataBaseDesignCourse.GlobalFunc
             combo.Items.Add("身份证");
         }
 
+        static public void bindCitizenCrimestatus(ComboBox combo)
+        {
+            combo.Items.Add("无罪");
+            combo.Items.Add("在逃");
+            combo.Items.Add("入狱");
+            combo.Items.Add("前科");
+        }
+
         static public void bindCitizenHometown(ComboBox combo)
         {
             combo.Items.Add("北京");
@@ -50,6 +58,32 @@ namespace DataBaseDesignCourse.GlobalFunc
             combo.Items.Add("台湾");
             combo.Items.Add("香港");
             combo.Items.Add("澳门");
+        }
+
+        static public void bindCasetype(ComboBox combo)
+        {
+            combo.Items.Add("民事");
+            combo.Items.Add("刑事");
+        }
+
+        static public void bindCitizenGender(ComboBox combo)
+        {
+            combo.Items.Add("男");
+            combo.Items.Add("女");
+        }
+
+        static public void bindCarType(ComboBox combo)
+        {
+            combo.Items.Add("卡车");
+            combo.Items.Add("轿车");
+            combo.Items.Add("面包车");
+        }
+
+        static public void bindCarStatus(ComboBox combo)
+        {
+            combo.Items.Add("在用");
+            combo.Items.Add("报废");
+            combo.Items.Add("盗窃");
         }
     }
 }

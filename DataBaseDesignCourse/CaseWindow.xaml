@@ -1,0 +1,37 @@
+﻿<Window
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	x:Class="DataBaseDesignCourse.CaseWindow"
+	x:Name="Window"
+	Title="CaseWindow"
+	Width="535" Height="340" MinWidth="535" MinHeight="340" MaxWidth="535" MaxHeight="340">
+
+	<Grid x:Name="LayoutRoot">
+        <TextBlock HorizontalAlignment="Left" Height="21" Margin="30.167,16.998,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67"><Run Language="zh-cn" Text="案件地点："/></TextBlock>
+		<TextBlock HorizontalAlignment="Left" Margin="30.167,151,0,130" TextWrapping="Wrap" Width="67"><Run Language="zh-cn" Text="案件描述："/></TextBlock>
+		<TextBlock HorizontalAlignment="Left" Height="21" Margin="30.167,52.665,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67"><Run Language="zh-cn" Text="案件类型："/></TextBlock>
+		<Button Content="确认" Height="21" Margin="0,0,27.5,18.002" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="48" Name="sure" Click="sure_Click" />
+		<Button Content="取消" HorizontalAlignment="Right" Height="21" Margin="0,0,88,18.002" VerticalAlignment="Bottom" Width="48" Name="cancel" Click="cancel_Click" />
+		<ComboBox Margin="101.167,51.664,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="154.125" Name="CaseType" />
+		<TextBlock HorizontalAlignment="Left" Height="21" Margin="30.167,87.168,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67"><Run Language="zh-cn" Text="案件状态："/></TextBlock>
+		<TextBox Height="22.25" Margin="101.167,15.248,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" HorizontalAlignment="Left" Width="154.125" Name="CaseAddress" />
+		<TextBox Margin="100,151,0,83" TextWrapping="Wrap" Text="" HorizontalAlignment="Left" Width="154.125" Name="CaseContent" />
+		<RadioButton Content="立案" HorizontalAlignment="Left" Height="21" Margin="99.835,87.168,0,0" VerticalAlignment="Top" Width="48.667" Name="CaseBuild" />
+		<RadioButton Content="调查" Height="21" Margin="200.625,86.501,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48.667" Name="CaseSurvey" />
+		<RadioButton Content="结案" Height="21" Margin="200.625,118.84,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="48.667" Name="CaseFinish" />
+		<RadioButton Content="审讯" HorizontalAlignment="Left" Height="21" Margin="99.833,118.84,0,0" VerticalAlignment="Top" Width="48.667" Name="CaseTrial" />
+		<ListView Margin="0,63,26,49" HorizontalAlignment="Right" Width="225.5" Name="CaseRelatedPersonList">
+			<ListView.View>
+				<GridView>
+					<GridViewColumn Header="姓名" DisplayMemberBinding="{Binding Path=Name}" Width="60"/>
+                    <GridViewColumn Header="身份证号" DisplayMemberBinding="{Binding Path=PKID}" Width="160"/>
+				</GridView>
+			</ListView.View>
+		</ListView>
+		<TextBlock HorizontalAlignment="Right" Height="21" Margin="0,34,182,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="67"><Run Language="zh-cn" Text="涉案人员："/></TextBlock>
+		<Button Content="删除" HorizontalAlignment="Left" Height="21" Margin="377,30,0,0" VerticalAlignment="Top" Width="48" Name="deletCase" Click="deletCase_Click" />
+		<Button Content="增加" HorizontalAlignment="Right" Height="21" Margin="0,30,27.5,0" VerticalAlignment="Top" Width="48" RenderTransformOrigin="1.646,0.572" Name="addCase" Click="addCase_Click" />
+        <TextBlock Text="案发时间："  Height="21" HorizontalAlignment="Left" Margin="30.167,0,0,49" Name="textBlock1" VerticalAlignment="Bottom" Width="79" />
+        <TextBox Height="22.25" HorizontalAlignment="Left" Margin="99.833,0,0,50" Name="CaseTime" VerticalAlignment="Bottom" Width="156" />
+    </Grid>
+</Window>

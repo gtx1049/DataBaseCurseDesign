@@ -1,0 +1,13 @@
+﻿<Window x:Class="DataBaseDesignCourse.addLiecse"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    Title="addLiecse" Height="174" Width="304">
+    <Grid>
+        <Button Width="60" Height="23" Margin="141,0,80,8" Name="sure" VerticalAlignment="Bottom" Click="sure_Click">确定</Button>
+        <Button Width="60" Height="23" HorizontalAlignment="Right" Margin="0,0,13,8" Name="cancel" VerticalAlignment="Bottom" Click="cancel_Click">取消</Button>
+        <TextBlock Height="21" Margin="34,23,0,0" Name="textBlock1" VerticalAlignment="Top" Text="驾照号码:" HorizontalAlignment="Left" Width="85" />
+        <TextBox Height="23" Margin="109,19,13,0" Name="License" VerticalAlignment="Top" />
+        <TextBlock Margin="34,61,0,54" Name="textBlock2" Text="驾照类型:" HorizontalAlignment="Left" Width="71" />
+        <ComboBox Height="23" Margin="111,59,13,54" Name="LicenseType" />
+    </Grid>
+</Window>

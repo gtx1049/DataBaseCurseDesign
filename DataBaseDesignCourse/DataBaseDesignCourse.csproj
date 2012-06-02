@@ -48,9 +48,18 @@
     </Reference>
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="WindowsBase" />
-    <Reference Include="PresentationCore" />
-    <Reference Include="PresentationFramework" />
+    <Reference Include="UIAutomationProvider">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationCore">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
@@ -60,6 +69,30 @@
     <Compile Include="Window1.xaml.cs">
       <DependentUpon>Window1.xaml</DependentUpon>
     </Compile>
+    <Page Include="addAccident.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="addLiecse.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CarWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CaseWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="CitizenWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="inputMonthBox.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -72,12 +105,31 @@
       <DependentUpon>Login.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="selectCitizen.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addAccident.xaml.cs">
+      <DependentUpon>addAccident.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="addLiecse.xaml.cs">
+      <DependentUpon>addLiecse.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CarWindow.xaml.cs">
+      <DependentUpon>CarWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CaseWindow.xaml.cs">
+      <DependentUpon>CaseWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CitizenWindow.xaml.cs">
+      <DependentUpon>CitizenWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="DataManager\DataManager.cs" />
     <Compile Include="DataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -93,8 +145,17 @@
     <Compile Include="Entitys\Entity.cs" />
     <Compile Include="Entitys\Police.cs" />
     <Compile Include="Entitys\Publicplace.cs" />
+    <Compile Include="GlobalFunc\AddIncome2.cs" />
+    <Compile Include="GlobalFunc\AllotPolice.cs" />
     <Compile Include="GlobalFunc\BindBox.cs" />
+    <Compile Include="GlobalFunc\class_getMaccidentID.cs" />
+    <Compile Include="GlobalFunc\class_getMcaseID.cs" />
+    <Compile Include="GlobalFunc\makecase.cs" />
+    <Compile Include="GlobalFunc\makecrimerate.cs" />
     <Compile Include="GlobalFunc\Process.cs" />
+    <Compile Include="inputMonthBox.xaml.cs">
+      <DependentUpon>inputMonthBox.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -107,6 +168,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="selectCitizen.xaml.cs">
+      <DependentUpon>selectCitizen.xaml</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
