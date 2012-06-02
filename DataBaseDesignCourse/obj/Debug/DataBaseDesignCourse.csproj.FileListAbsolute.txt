@@ -59,3 +59,5 @@ D:\我的文档\Visual Studio 2008\Projects\DataBaseCurseDesign\DataBaseDesignCo
 D:\我的文档\Visual Studio 2008\Projects\DataBaseCurseDesign\DataBaseDesignCourse\obj\Debug\addLiecse.g.cs
 D:\我的文档\Visual Studio 2008\Projects\DataBaseCurseDesign\DataBaseDesignCourse\obj\Debug\inputMonthBox.baml
 D:\我的文档\Visual Studio 2008\Projects\DataBaseCurseDesign\DataBaseDesignCourse\obj\Debug\inputMonthBox.g.cs
+D:\我的文档\Visual Studio 2008\Projects\DataBaseCurseDesign\DataBaseDesignCourse\obj\Debug\table.baml
+D:\我的文档\Visual Studio 2008\Projects\DataBaseCurseDesign\DataBaseDesignCourse\obj\Debug\table.g.cs

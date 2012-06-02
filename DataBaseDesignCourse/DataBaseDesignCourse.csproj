@@ -40,6 +40,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -58,6 +59,9 @@
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
     <Reference Include="PresentationFramework">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsFormsIntegration">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
   </ItemGroup>
@@ -109,6 +113,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="table.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Window1.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -147,6 +155,7 @@
     <Compile Include="Entitys\Publicplace.cs" />
     <Compile Include="GlobalFunc\AddIncome2.cs" />
     <Compile Include="GlobalFunc\AllotPolice.cs" />
+    <Compile Include="GlobalFunc\AreaRect.cs" />
     <Compile Include="GlobalFunc\BindBox.cs" />
     <Compile Include="GlobalFunc\class_getMaccidentID.cs" />
     <Compile Include="GlobalFunc\class_getMcaseID.cs" />
@@ -172,6 +181,9 @@
     <Compile Include="selectCitizen.xaml.cs">
       <DependentUpon>selectCitizen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="table.xaml.cs">
+      <DependentUpon>table.xaml</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -196,6 +208,14 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="登录界面.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="map2\all.png" />
+    <Resource Include="map2\changning.png" />
+    <Resource Include="map2\huangpu.png" />
+    <Resource Include="map2\jiading.png" />
+    <Resource Include="map2\jingan.png" />
+    <Resource Include="map2\putuo.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

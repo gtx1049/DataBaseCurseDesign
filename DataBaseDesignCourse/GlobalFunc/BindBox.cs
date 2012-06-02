@@ -85,5 +85,14 @@ namespace DataBaseDesignCourse.GlobalFunc
             combo.Items.Add("报废");
             combo.Items.Add("盗窃");
         }
+
+        static public void bindArea(ComboBox combo)
+        {
+            combo.Items.Add("嘉定区");
+            combo.Items.Add("长宁区");
+            combo.Items.Add("普陀区");
+            combo.Items.Add("静安区");
+            combo.Items.Add("黄浦区");
+        }
     }
 }

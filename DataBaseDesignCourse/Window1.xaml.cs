@@ -15,6 +15,7 @@ using System.Drawing;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using DataBaseDesignCourse.GlobalFunc;
+using System.IO;
 
 namespace DataBaseDesignCourse
 {
@@ -25,7 +26,17 @@ namespace DataBaseDesignCourse
 
 	public partial class Window1 : Window
 	{
+        private BitmapImage[] map;
+        private AreaRect[] ar;
+        private AreaRect[] region;
+        private System.Windows.Shapes.Rectangle mark;
+        private bool hasmark;
 
+        private bool outofarea;
+        private int drawcountall;
+        private int drawcountpart;
+
+        int funding;
 
 		public Window1()
 		{
@@ -35,6 +46,93 @@ namespace DataBaseDesignCourse
                 BindBox.bindCitizenHometown(this.QueryHometown);
                 BindBox.bindIDtypebox(this.QueryIDtype);
                 BindBox.bindCasetype(this.QueryCaseType);
+                BindBox.bindArea(this.policeArea);
+                BindBox.bindArea(this.publicPlace);
+
+                FileStream fs = new FileStream("funding", FileMode.OpenOrCreate);
+                StreamReader sw = new StreamReader(fs);
+                string tempfunding = sw.ReadLine();
+                if (tempfunding == null || tempfunding.Length == 0)
+                {
+                    funding = 0;
+                }
+                else
+                {
+                    funding = Convert.ToInt32(tempfunding);
+                }
+                sw.Close();
+                this.Funding.Text = funding.ToString();
+
+                hasmark = false;
+                mark = null;
+
+                outofarea = true;
+                drawcountall = 1;
+                drawcountpart = 0;
+
+                //加载地图
+                map = new BitmapImage[6];
+
+                map[0] = new BitmapImage();
+                map[0].BeginInit();
+                map[0].StreamSource = System.IO.File.OpenRead("map2/all.png");
+                map[0].EndInit();
+
+                map[1] = new BitmapImage();
+                map[1].BeginInit();
+                map[1].StreamSource = System.IO.File.OpenRead("map2/jiading.png");
+                map[1].EndInit();
+
+                map[2] = new BitmapImage();
+                map[2].BeginInit();
+                map[2].StreamSource = System.IO.File.OpenRead("map2/changning.png");
+                map[2].EndInit();
+
+                map[3] = new BitmapImage();
+                map[3].BeginInit();
+                map[3].StreamSource = System.IO.File.OpenRead("map2/putuo.png");
+                map[3].EndInit();
+
+                map[4] = new BitmapImage();
+                map[4].BeginInit();
+                map[4].StreamSource = System.IO.File.OpenRead("map2/jingan.png");
+                map[4].EndInit();
+
+                map[5] = new BitmapImage();
+                map[5].BeginInit();
+                map[5].StreamSource = System.IO.File.OpenRead("map2/huangpu.png");
+                map[5].EndInit();
+
+                //this.Map.
+                this.Map.Source = map[0];
+
+                //加载地图上的区域
+                region = new AreaRect[5];
+                ar = new AreaRect[14];
+
+                region[0] = new AreaRect(82, 179, 127, 196, "嘉定区");
+                region[1] = new AreaRect(180, 421, 225, 438, "长宁区");
+                region[2] = new AreaRect(249, 281, 302, 298, "普陀区");
+                region[3] = new AreaRect(368, 353, 410, 364, "静安区");
+                region[4] = new AreaRect(470, 362, 512, 379, "黄浦区");
+
+                ar[0] = new AreaRect(66, 108, 136, 118, "嘉定区中心医院");
+                ar[1] = new AreaRect(93, 143, 149, 155, "嘉定区政府");
+                ar[2] = new AreaRect(89, 206, 156, 217, "嘉定区上海国际F1赛车场");
+                ar[3] = new AreaRect(79, 227, 127, 241, "嘉定区同济大学");
+                ar[4] = new AreaRect(44, 262, 103, 280, "嘉定区公安分局");
+                ar[5] = new AreaRect(114, 290, 156, 300, "嘉定区上海觉林寺");
+                
+                ar[6] = new AreaRect(169, 230, 225, 248, "普陀区东新路派出所");
+                ar[7] = new AreaRect(232, 222, 267, 231, "普陀区上海西站");
+                ar[8] = new AreaRect(235, 251, 274, 269, "普陀区政府");
+                ar[9] = new AreaRect(302, 259, 355, 272, "普陀区图书馆");
+                ar[10] = new AreaRect(257, 304, 327, 315, "普陀区沪西工人文化宫");
+                ar[11] = new AreaRect(250, 328, 295, 342, "普陀区曹杨第二中学");
+                ar[11] = new AreaRect(239, 348, 299, 357, "普陀区华东师范大学");
+                ar[12] = new AreaRect(157, 355, 222, 373, "普陀区长风公园");
+                ar[13] = new AreaRect(323, 340, 348, 352, "普陀区梦清园");
+
             }
             catch (System.Exception ex)
             {
@@ -419,6 +517,87 @@ namespace DataBaseDesignCourse
             {
                 this.CaseRelatePerson.ItemsSource = null;
             }
+
+        }
+
+        //create the report through time
+        private void CaseReportTimeClick(object sender, RoutedEventArgs e)
+        {
+            string time = this.reportTime.Text;
+            
+            try
+            {
+                Convert.ToDateTime(time);
+            }
+            catch (System.FormatException ex)
+            {
+                ex.ToString();
+                System.Windows.MessageBox.Show("请将时间格式设置为yyyy-mm-dd！", "提示", System.Windows.MessageBoxButton.OK);
+                return;
+            }
+
+            time = "'" + time + "'";
+            string sql = "select * from cases where time=" + time;
+            //string sql = "select * from cases";
+            table t = new table(sql);
+            t.Show();
+        }
+
+        //create the report through status
+        private void statuscreateClick(object sender, RoutedEventArgs e)
+        {
+            bool isempty = true;
+
+            if(this.checkbuildcase.IsChecked == false &&
+               this.checkfinishcase.IsChecked == false &&
+               this.checktrialcase.IsChecked == false &&
+               this.checksurveycase.IsChecked == false)
+            {
+                System.Windows.MessageBox.Show("没有选择任何一项！", "提示", System.Windows.MessageBoxButton.OK);
+                return;
+            }
+
+            string condition = "";
+            if (this.checksurveycase.IsChecked == true)
+            {
+                if (!isempty)
+                {
+                    condition += " or casestatus = '调查' ";
+                }
+                condition += "select * from cases where casestatus = '调查' ";
+                isempty = false;
+            }
+            if (this.checktrialcase.IsChecked == true)
+            {
+                if (!isempty)
+                {
+                    condition += " or casestatus = '审讯' ";
+                }
+                condition += "select * from cases where casestatus = '审讯' ";
+                isempty = false;
+            }
+            if (this.checkbuildcase.IsChecked == true)
+            {
+                if (!isempty)
+                {
+                    condition += " or casestatus = '立案' ";
+                }
+                condition += "select * from cases where casestatus = '立案' ";
+                isempty = false;
+            }
+            if (this.checkfinishcase.IsChecked == true)
+            {
+                if (!isempty)
+                {
+                    condition += " or casestatus = '结案' ";
+                }
+                condition += "select * from cases where casestatus = '结案' ";
+                isempty = false;
+            }
+
+            condition.Remove(condition.Length - 1);
+            table t = new table(condition);
+            t.Show();
 
         }
 
@@ -969,6 +1148,127 @@ namespace DataBaseDesignCourse
             System.Windows.Point p;
             p = e.GetPosition(this.themap);
             System.Windows.MessageBox.Show((int)p.X + "," + (int)p.Y, "提示", System.Windows.MessageBoxButton.OK);
+
+            for (int i = 0; i < 14; i++)
+            {
+                if (ar[i].isPtinRect(p))
+                {
+                    
+                    DataManager ins = DataManager.createInstance();
+                    List<Entity> list = ins.exeReadSQL(Publicplace.getClass(), " address = '" + ar[i].Address + "'");
+
+                    Publicplace place = (Publicplace)list[0];
+
+                    string display = place.Address + "\n\n";
+                    display += "介绍：" + place.Introduction + "\n\n";
+                    display += "花费：" + place.Spending + "元";
+
+                    System.Windows.MessageBox.Show(display, "提示", System.Windows.MessageBoxButton.OK);
+                    break;
+                }
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                if (region[i].isPtinRect(p))
+                {
+                    int policenum;
+                    int citizennum;
+
+                    DataManager ins = DataManager.createInstance();
+                    List<Entity> list = ins.exeReadSQL(Police.getClass(), " area = '" + region[i].Address + "'");
+                    if (list == null)
+                    {
+                        policenum = 0;
+                    }
+                    else
+                    {
+                        policenum = list.Count;
+                    }
+                    list = ins.exeReadSQL(Citizen.getClass(), "address like '%" + region[i].Address + "%'");
+                    if (list == null)
+                    {
+                        citizennum = 0;
+                    }
+                    else
+                    {
+                        citizennum = list.Count;
+                    }
+                    Crimerate cm = (Crimerate)ins.FindbyPrimaryKey(Crimerate.getClass(), region[i].Address);
+
+                    string display = region[i].Address + ":\n\n";
+                    display += "人口：" + citizennum + "\n\n";
+                    display += "警察数量：" + policenum + "\n\n";
+                    display += "犯罪率：" + cm.CrimeRate + "%\n\n";
+                    display += "交通事故/违规率：" + cm.Accidentrate + "%";
+                    
+                    System.Windows.MessageBox.Show(display, "提示", System.Windows.MessageBoxButton.OK);
+                    break;
+                }
+            }
+        }
+
+        //read the mouse position and load map
+        private void monitorMouse(object sender, MouseEventArgs e)
+        {
+            System.Windows.Point p;
+            p = e.GetPosition(this.themap);
+            
+            hasmark = false;
+            outofarea = true;
+
+            for (int i = 0; i < 14; i++)
+            {
+                if (ar[i].isPtinRect(p))
+                {
+                    hasmark = true;
+                    if (mark != null)
+                    {
+                        break; 
+                    }
+                    mark = new System.Windows.Shapes.Rectangle();
+                    //mark.Fill = new SolidColorBrush(Colors.Green)
+                    
+                    mark.Stroke = System.Windows.Media.Brushes.Red;
+
+                    mark.RadiusX = 3;
+                    mark.RadiusY = 3;
+                    mark.Width = ar[i].rightbottomX - ar[i].lefttopX;
+                    mark.Height = ar[i].rightbottomY - ar[i].lefttopY;
+                    Canvas.SetLeft(mark, ar[i].lefttopX);
+                    Canvas.SetTop(mark, ar[i].lefttopY);
+
+                    this.themap.Children.Add(mark);
+                    
+                }
+            }
+            if (!hasmark)
+            {
+                this.themap.Children.Remove(mark);
+                mark = null;
+            }
+
+            for (int i = 0; i < 5; i++)
+            {
+                if (region[i].isPtinRect(p))
+                {
+                    outofarea = false;
+                    if (drawcountpart == 0)
+                    {
+                        this.Map.Source = map[i + 1];
+                        drawcountpart++;
+                        drawcountall--;
+                    }
+                    break;
+                }
+            }
+            if (outofarea && drawcountall == 0)
+            {
+                this.Map.Source = map[0];
+                drawcountall++;
+                drawcountpart--;
+            }
+            
         }
 
         //allocate the police
@@ -978,6 +1278,50 @@ namespace DataBaseDesignCourse
             ap.Allot();
             System.Windows.MessageBox.Show("分配成功！", "提示", System.Windows.MessageBoxButton.OK);
 
+        }
+
+        //to view the police in one area
+        private void policeOneAreaClick(object sender, RoutedEventArgs e)
+        {
+            string area = this.policeArea.Text;
+            if (area.Length == 0)
+            {
+                System.Windows.MessageBox.Show("请选择区域！", "提示", System.Windows.MessageBoxButton.OK);
+                return;
+            }
+            string sql = "select * from police where area = " + "'" + area + "'";
+            table t = new table(sql);
+            t.Show();
+        }
+
+        //to view all the police
+        private void PoliceReportClick(object sender, RoutedEventArgs e)
+        {
+            string sql = "select * from police";
+            table t = new table(sql);
+            t.Show();
+        }
+
+        //to view all the public place
+        private void selectAllplaceClick(object sender, RoutedEventArgs e)
+        {
+            string sql = "select * from publicplace";
+            table t = new table(sql);
+            t.Show();
+        }
+
+        //to view public places in one area
+        private void selectOneAreaClick(object sender, RoutedEventArgs e)
+        {
+            string area = this.publicPlace.Text;
+            if (area.Length == 0)
+            {
+                System.Windows.MessageBox.Show("请选择区域！", "提示", System.Windows.MessageBoxButton.OK);
+                return;
+            }
+            string sql = "select * from publicplace where address like '" + area + "%'";
+            table t = new table(sql);
+            t.Show();
         }
         /************************************************************************/
         /*                      Operation of Simulation                            */
@@ -999,13 +1343,29 @@ namespace DataBaseDesignCourse
 
                 AddIncome2 ai = new AddIncome2();
                 int income = ai.GetAllIncome(month);
-                
+
+                funding += income;
+                this.Funding.Text = funding.ToString();
+
                 System.Windows.MessageBox.Show("生成事件共" + total + "条。\n总收入：" + income + "元", "提示", System.Windows.MessageBoxButton.OK);
                 
             }
         }
 
+        /************************************************************************/
+        /*                      Operation of Window                            */
+        /************************************************************************/
 
+        //when you close the widow, store funding
+        private void WindowClosed(object sender, EventArgs e)
+        {
+            //System.Windows.MessageBox.Show("xxxx", "提示", System.Windows.MessageBoxButton.OK);
+            FileStream fs = new FileStream("funding", FileMode.OpenOrCreate);
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine(funding.ToString());
+
+            sw.Close();
+        }
 
     }
 }

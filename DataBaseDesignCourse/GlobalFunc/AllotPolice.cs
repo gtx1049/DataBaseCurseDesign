@@ -19,8 +19,8 @@ namespace DataBaseDesignCourse.GlobalFunc
         }
         public void Allot()
         {
-            List<Entity> crimeRate = dataManager.FindAll("Crimerate");
-            List<Entity> police = dataManager.FindAll("Police");
+            List<Entity> crimeRate = dataManager.FindAll(Crimerate.getClass());
+            List<Entity> police = dataManager.FindAll(Police.getClass());
 
             int PoliceCount = police.Count();
             int CrimeCount = 0;

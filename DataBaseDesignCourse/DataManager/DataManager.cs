@@ -491,5 +491,36 @@ namespace DataBaseDesignCourse
             }
 
         }
+
+        //return dataview to create a report
+        public DataTable getDataTable(string selectcmd)
+        {
+            DataTable dt = new DataTable();
+            SqlDataAdapter adapter = null;
+
+            try
+            {
+                connection.Open();
+                adapter = new SqlDataAdapter(selectcmd, connection);
+                adapter.Fill(dt);
+            }
+            catch (System.Exception ex)
+            {
+                System.Console.WriteLine(ex.ToString());
+                connection.Close();
+                
+            }
+            finally
+            {
+                connection.Close();
+                if (adapter != null)
+                {
+                    adapter.Dispose();
+                }
+            }
+
+
+            return dt;
+        }
     }
 }

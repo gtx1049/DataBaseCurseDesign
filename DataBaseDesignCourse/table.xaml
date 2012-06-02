@@ -1,0 +1,20 @@
+﻿<Window x:Class="DataBaseDesignCourse.table"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:wf="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms"
+             Title="table" Height="306" Width="748">
+    <Grid  Background="DarkGray">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="34"></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <WindowsFormsHost Grid.Row="1" Name="windowsFormsHost1" Background="LightGray" >
+            <wf:DataGridView Name="listDataGrid" ReadOnly="True" AllowDrop="True"
+                                  AllowUserToAddRows="False" AllowUserToDeleteRows="False" 
+                                  Font="15" RowHeadersWidth="20" SelectionMode="FullRowSelect"
+                                  ShowEditingIcon="False" ShowCellToolTips="False" ShowCellErrors="False"
+                                  ShowRowErrors="False" AutoSizeColumnsMode="AllCells" >
+            </wf:DataGridView>
+        </WindowsFormsHost>
+    </Grid>
+</Window>

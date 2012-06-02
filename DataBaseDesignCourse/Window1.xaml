@@ -5,7 +5,7 @@
 	x:Class="DataBaseDesignCourse.Window1"
 	x:Name="Window"
 	Title="城市公安信息管理系统--UI version0.1"
-	Width="800" Height="600" MinWidth="800" MinHeight="400">
+	Width="800" Height="600" MinWidth="800" MinHeight="400" Closed="WindowClosed">
 	<Grid>
 		<TabControl Background="#FFF3F3F3">
 			<TabItem Header="公民信息管理">
@@ -192,19 +192,19 @@
                     </GroupBox>
                     <GroupBox Header="根据状态生成报表" HorizontalAlignment="Right" Height="94.538" Margin="0,1.625,8,0" VerticalAlignment="Top" Width="185" Background="#FFE4E4E4">
                         <Grid Margin="2,0,2,1.702">
-                            <CheckBox Content="立案状态" Height="17.702" Margin="1,0,73.5,0" VerticalAlignment="Top"/>
-                            <CheckBox Content="调查状态" Margin="1,17.702,73.5,34.595"/>
-                            <CheckBox Content="审讯状态" Margin="1.5,0,73,16.892" Height="17.703" VerticalAlignment="Bottom"/>
-                            <CheckBox Content="结案状态" Margin="1.5,0,73,0" Height="17.702" VerticalAlignment="Bottom"/>
-                            <Button Content="生成" HorizontalAlignment="Right" Height="26.297" Margin="0,0,4.333,4.66" VerticalAlignment="Bottom" Width="79.334"/>
+                            <CheckBox Content="立案状态" Height="17.702" Margin="1,0,73.5,0" VerticalAlignment="Top" Name="checkbuildcase" />
+                            <CheckBox Content="调查状态" Margin="1,17.702,73.5,34.595" Name="checksurveycase" />
+                            <CheckBox Content="审讯状态" Margin="1.5,0,73,16.892" Height="17.703" VerticalAlignment="Bottom" Name="checktrialcase" />
+                            <CheckBox Content="结案状态" Margin="1.5,0,73,0" Height="17.702" VerticalAlignment="Bottom" Name="checkfinishcase" />
+                            <Button Content="生成" HorizontalAlignment="Right" Height="26.297" Margin="0,0,4.333,4.66" VerticalAlignment="Bottom" Width="79.334" Name="statuscreate" Click="statuscreateClick" />
                         </Grid>
                     </GroupBox>
                     <TextBlock HorizontalAlignment="Right" Height="32.333" Margin="0,17.83,21.666,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="78.667" Foreground="#FFA18554"><Run Language="zh-cn" Text="勾选报表所包含的案件状态"/></TextBlock>
                     <GroupBox Header="根据时间生成报表" HorizontalAlignment="Right" Height="83.653" Margin="0,100.163,8,0" VerticalAlignment="Top" Width="185" Background="#FFE4E4E4">
                         <Grid Margin="2,0,2,1.702">
-                            <Button Content="生成" Height="20.797" Margin="0,0,4.333,4.66" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="48"/>
+                            <Button Content="生成" Height="20.797" Margin="0,0,4.333,4.66" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="48" Click="CaseReportTimeClick" />
                             <TextBlock HorizontalAlignment="Left" Margin="8,10.664,0,0" TextWrapping="Wrap" Width="45.5" Height="19.173" VerticalAlignment="Top"><Run Language="zh-cn" Text="时间："/></TextBlock>
-                            <TextBox Margin="47,8.5,8,0" TextWrapping="Wrap" Text="" Height="19.837" VerticalAlignment="Top"/>
+                            <TextBox Margin="47,8.5,8,0" TextWrapping="Wrap" Text="" Height="19.837" VerticalAlignment="Top" Name="reportTime" />
                         </Grid>
                     </GroupBox>
                     <ListView HorizontalAlignment="Right" Margin="0,110,198.75,8" Name="CaseRelatePerson" Width="151.474">
@@ -374,29 +374,24 @@
 			<TabItem Header="警力和场所分布">
 				<Grid>
 					<Grid Margin="175.662,13.832,8,8" Background="#FFD7E2D7">
-                        <Canvas Margin="0,0,0,0" Background="#FFD7E2D7" PreviewMouseLeftButtonDown="clickCanvas" Name="themap" />
+                        <Canvas Margin="0,0,0,0" Background="#FFD7E2D7" PreviewMouseMove="monitorMouse"  PreviewMouseLeftButtonDown="clickCanvas" Name="themap">
+                            <Image Canvas.Left="0" Canvas.Top="0" Height="512" Name="Map" Stretch="Fill" RenderOptions.BitmapScalingMode="NearestNeighbor" Width="596" />
+                        </Canvas>
                     </Grid>
-                    <GroupBox Header="场所" HorizontalAlignment="Left" Margin="5.417,256.496,0,8" Width="155.739" Background="White">
-						<Grid Margin="2,1.164,2,2">
+                    <GroupBox Header="场所" HorizontalAlignment="Left" Margin="5.417,0,0,22" Width="155.739" Background="White" Height="231.313" VerticalAlignment="Bottom">
+						<Grid Margin="2,1.164,2,2" Height="195">
 							<TextBlock Margin="6.253,13.334,0,0" TextWrapping="Wrap" Height="19.333" VerticalAlignment="Top" HorizontalAlignment="Left" Width="39.333"><Run Language="zh-cn" Text="地区："/></TextBlock>
-							<TextBlock Margin="8,73.334,0,0" TextWrapping="Wrap" Height="19.333" VerticalAlignment="Top" HorizontalAlignment="Left" Width="39.333"><Run Language="zh-cn" Text="名称："/></TextBlock>
-							<TextBox Margin="7.833,93.334,8,0" TextWrapping="Wrap" Text="" Height="24.167" VerticalAlignment="Top"/>
-							<TextBlock Margin="8,0,0,79.667" TextWrapping="Wrap" Height="19.333" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="60.666"><Run Language="zh-cn" Text="场所数量："/></TextBlock>
-							<Button Content="查询" Height="22.332" Margin="0,0,7.999,17.668" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="60.573"/>
-							<ComboBox Height="20.501" Margin="6.253,0,6.665,53" VerticalAlignment="Bottom"/>
-							<ComboBox Height="20.501" Margin="7.5,43.666,5.418,0" VerticalAlignment="Top"/>
-						</Grid>
+                            <Button Content="查询" Margin="8.306,80,0,68" HorizontalAlignment="Left" Width="54" Name="selectOneArea" Click="selectOneAreaClick" />
+                            <ComboBox Height="20.501" Margin="7.5,43.666,5.418,0" VerticalAlignment="Top" Name="publicPlace" />
+                            <Button Height="47" Margin="0,0,10,18" Name="selectAllplace" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="54.056" Click="selectAllplaceClick">全部</Button>
+                        </Grid>
 					</GroupBox>
-					<GroupBox Header="警力分布" Height="250.183" Margin="5.417,2.313,0,0" VerticalAlignment="Top" Background="White" HorizontalAlignment="Left" Width="155.739">
-						<Grid Margin="0,1.347,1.583,2">
-							<TextBox Margin="9.25,77,9,0" TextWrapping="Wrap" Text="" Height="26" VerticalAlignment="Top"/>
-							<TextBlock Margin="10.25,12.001,0,0" TextWrapping="Wrap" Height="19.333" VerticalAlignment="Top" HorizontalAlignment="Left" Width="39.333"><Run Language="zh-cn" Text="地区："/></TextBlock>
-							<ComboBox Height="19.333" Margin="10.25,33.334,8,0" VerticalAlignment="Top"/>
-							<TextBlock Margin="10.25,60.667,0,0" TextWrapping="Wrap" Height="19.333" VerticalAlignment="Top" HorizontalAlignment="Left" Width="49.333"><Run Language="zh-cn" Text="警官号："/></TextBlock>
-							<ComboBox Height="19.5" Margin="10.25,0,8,73.832" VerticalAlignment="Bottom" d:LayoutOverrides="VerticalAlignment"/>
-							<Button Content="查询" HorizontalAlignment="Right" Height="22.332" Margin="0,0,8,43" VerticalAlignment="Bottom" Width="60.573" RenderTransformOrigin="0.528,-0.672"/>
-							<TextBlock Margin="10.833,108.834,56.49,99.832" TextWrapping="Wrap" RenderTransformOrigin="1.07,1.198"><Run Language="zh-cn" Text="按警力数量："/></TextBlock>
-							<Button Content="自动分配警力" Height="22.332" Margin="9.583,0,9,8" VerticalAlignment="Bottom" Name="AllocatePolice" Click="AllocatePoliceClick">
+					<GroupBox Header="警力分布" Height="230" Margin="5.417,31,0,0" VerticalAlignment="Top" Background="White" HorizontalAlignment="Left" Width="155.739">
+						<Grid Margin="0,1.347,1.583,2" Height="193">
+                            <TextBlock Margin="10.25,16,0,0" TextWrapping="Wrap" Height="19.333" VerticalAlignment="Top" HorizontalAlignment="Left" Width="39.333"><Run Language="zh-cn" Text="地区："/></TextBlock>
+							<ComboBox Height="19" Margin="9.25,46,9,0" VerticalAlignment="Top" Name="policeArea" />
+                            <Button Content="查询" Margin="0,81,9,0" RenderTransformOrigin="0.528,-0.672" Height="22.149" HorizontalAlignment="Right" VerticalAlignment="Top" Width="60.156" Name="policeOneArea" Click="policeOneAreaClick" />
+                            <Button Content="自动分配警力" Height="22.332" Margin="9.583,0,9,18" VerticalAlignment="Bottom" Name="AllocatePolice" Click="AllocatePoliceClick">
 								<Button.Background>
 									<LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
 										<GradientStop Color="#FFF3F3F3" Offset="0"/>
@@ -404,7 +399,8 @@
 									</LinearGradientBrush>
 								</Button.Background>
 							</Button>
-						</Grid>
+                            <Button Height="23" Margin="0,0,9,59" Name="PoliceReport" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="59.989" Click="PoliceReportClick">报表</Button>
+                        </Grid>
 					</GroupBox>
 					<Slider HorizontalAlignment="Left" Margin="160.329,13.832,0,3.998" Width="11.333" Orientation="Vertical" Background="#00664D4D" BorderBrush="Black"/>
 				</Grid>
@@ -412,6 +408,6 @@
 		</TabControl>
 		<Button Content="模拟" Height="17.903" Width="66.795" HorizontalAlignment="Right" VerticalAlignment="Top" FontSize="8" Margin="0,1.812,2.056,0" Click="SimulationClick" />
 		<TextBlock HorizontalAlignment="Right" Height="19.715" Margin="0,2.916,144.121,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="74.379"><Run Language="zh-cn" Text="总资金："/></TextBlock>
-		<TextBox HorizontalAlignment="Right" Height="18.715" Margin="0,1.999,83.25,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="87.75" IsEnabled="False"/>
+		<TextBox HorizontalAlignment="Right" Height="18.715" Margin="0,1.999,83.25,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="87.75" IsEnabled="False" Name="Funding" />
 	</Grid>
 </Window>
