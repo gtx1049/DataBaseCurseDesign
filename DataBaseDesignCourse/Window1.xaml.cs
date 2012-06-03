@@ -108,7 +108,7 @@ namespace DataBaseDesignCourse
 
                 //加载地图上的区域
                 region = new AreaRect[5];
-                ar = new AreaRect[14];
+                ar = new AreaRect[41];
 
                 region[0] = new AreaRect(82, 179, 127, 196, "嘉定区");
                 region[1] = new AreaRect(180, 421, 225, 438, "长宁区");
@@ -116,23 +116,50 @@ namespace DataBaseDesignCourse
                 region[3] = new AreaRect(368, 353, 410, 364, "静安区");
                 region[4] = new AreaRect(470, 362, 512, 379, "黄浦区");
 
-                ar[0] = new AreaRect(66, 108, 136, 118, "嘉定区中心医院");
-                ar[1] = new AreaRect(93, 143, 149, 155, "嘉定区政府");
+                ar[0] = new AreaRect(66, 108, 136, 122, "嘉定区中心医院");
+                ar[1] = new AreaRect(93, 143, 151, 157, "嘉定区政府");
                 ar[2] = new AreaRect(89, 206, 156, 217, "嘉定区上海国际F1赛车场");
                 ar[3] = new AreaRect(79, 227, 127, 241, "嘉定区同济大学");
-                ar[4] = new AreaRect(44, 262, 103, 280, "嘉定区公安分局");
-                ar[5] = new AreaRect(114, 290, 156, 300, "嘉定区上海觉林寺");
+                ar[4] = new AreaRect(44, 262, 105, 286, "嘉定区公安分局");
+                ar[5] = new AreaRect(114, 290, 157, 302, "嘉定区上海觉林寺");
                 
-                ar[6] = new AreaRect(169, 230, 225, 248, "普陀区东新路派出所");
-                ar[7] = new AreaRect(232, 222, 267, 231, "普陀区上海西站");
-                ar[8] = new AreaRect(235, 251, 274, 269, "普陀区政府");
-                ar[9] = new AreaRect(302, 259, 355, 272, "普陀区图书馆");
-                ar[10] = new AreaRect(257, 304, 327, 315, "普陀区沪西工人文化宫");
-                ar[11] = new AreaRect(250, 328, 295, 342, "普陀区曹杨第二中学");
-                ar[11] = new AreaRect(239, 348, 299, 357, "普陀区华东师范大学");
-                ar[12] = new AreaRect(157, 355, 222, 373, "普陀区长风公园");
-                ar[13] = new AreaRect(323, 340, 348, 352, "普陀区梦清园");
+                ar[6] = new AreaRect(169, 230, 229, 254, "普陀区东新路派出所");
+                ar[7] = new AreaRect(232, 222, 270, 234, "普陀区上海西站");
+                ar[8] = new AreaRect(235, 251, 279, 276, "普陀区政府");
+                ar[9] = new AreaRect(302, 259, 356, 273, "普陀区图书馆");
+                ar[10] = new AreaRect(257, 304, 329, 316, "普陀区沪西工人文化宫");
+                ar[11] = new AreaRect(250, 328, 297, 343, "普陀区曹杨第二中学");
+                ar[12] = new AreaRect(238, 347, 302, 360, "普陀区华东师范大学");
+                ar[13] = new AreaRect(188, 354, 223, 382, "普陀区长风公园");
+                ar[14] = new AreaRect(321, 340, 348, 354, "普陀区梦清园");
 
+                ar[15] = new AreaRect(106, 385, 155, 400, "长宁区八五医院");
+                ar[16] = new AreaRect(127, 409, 181, 423, "长宁区政府");
+                ar[17] = new AreaRect(79, 442, 132, 456,  "长宁区虹桥国际机场");
+                ar[18] = new AreaRect(244, 395, 302, 408, "长宁区龙之梦购物中心");
+                ar[19] = new AreaRect(256, 408, 299, 420, "长宁区中山公园");
+                ar[20] = new AreaRect(260, 426, 332, 439, "长宁区公安分局");
+                ar[21] = new AreaRect(218, 440, 280, 454, "长宁区延安高级中学");
+                //ar[20] = new AreaRect(229, 440, 280, 462, "天山新村");
+                ar[22] = new AreaRect(370, 321, 425, 333, "静安区政府");
+                ar[23] = new AreaRect(366, 334, 427, 348, "静安区公安分局");
+                ar[24] = new AreaRect(341, 366, 378, 390, "静安区华山医院");
+                ar[25] = new AreaRect(386, 378, 423, 391, "静安区静安公园");
+                ar[26] = new AreaRect(350, 399, 403, 413, "静安区上海展览中心");
+                ar[27] = new AreaRect(468, 293, 521, 306, "黄浦区政府");
+                ar[28] = new AreaRect(439, 311, 497, 327, "黄浦区市人大市政府");
+                ar[29] = new AreaRect(520, 306, 550, 318, "黄浦区十六铺");
+                ar[30] = new AreaRect(441, 337, 487, 351, "黄浦区上海大剧院");
+                ar[31] = new AreaRect(516, 329, 538, 340, "黄浦区豫园");
+                ar[32] = new AreaRect(520, 343, 550, 354, "黄浦区城隍庙");
+                ar[33] = new AreaRect(447, 390, 490, 405, "黄浦区复兴公园");
+                ar[34] = new AreaRect(501, 396, 547, 409, "黄浦区大同中学");
+                ar[35] = new AreaRect(430, 408, 469, 436, "黄浦区打浦桥田子坊");
+                ar[36] = new AreaRect(494, 419, 549, 434, "黄浦区来福士广场");
+                ar[37] = new AreaRect(458, 441, 521, 455, "黄浦区市九人民医院");
+                ar[38] = new AreaRect(446, 471, 515, 484, "黄浦区上海世博会纪念馆");
+                ar[39] = new AreaRect(228, 455, 265, 467, "长宁区天山新村");
+                ar[40] = new AreaRect(515, 367, 577, 391, "黄浦区公安分局");
             }
             catch (System.Exception ex)
             {
@@ -1147,9 +1174,9 @@ namespace DataBaseDesignCourse
         {
             System.Windows.Point p;
             p = e.GetPosition(this.themap);
-            System.Windows.MessageBox.Show((int)p.X + "," + (int)p.Y, "提示", System.Windows.MessageBoxButton.OK);
+            //System.Windows.MessageBox.Show((int)p.X + "," + (int)p.Y, "提示", System.Windows.MessageBoxButton.OK);
 
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 41; i++)
             {
                 if (ar[i].isPtinRect(p))
                 {
@@ -1217,7 +1244,7 @@ namespace DataBaseDesignCourse
             hasmark = false;
             outofarea = true;
 
-            for (int i = 0; i < 14; i++)
+            for (int i = 0; i < 41; i++)
             {
                 if (ar[i].isPtinRect(p))
                 {

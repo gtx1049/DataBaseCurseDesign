@@ -33,7 +33,7 @@ namespace DataBaseDesignCourse.GlobalFunc
 
             foreach (Crimerate crimerate in crimeRate)
             {
-                float PoliceNumOfArea = crimerate.CrimeRate * PoliceCount / CrimeCount;
+                float PoliceNumOfArea = (float)crimerate.CrimeRate * (float)PoliceCount / (float)CrimeCount;
                 int number = (int)Math.Round(PoliceNumOfArea);
 
                 if (number != 0)
@@ -41,8 +41,10 @@ namespace DataBaseDesignCourse.GlobalFunc
                     List<Entity> smallPolice = police.GetRange(pointer, number);
                     foreach (Police entity in smallPolice)
                     {
-                        string sql = "UPDATE Police SET area = " + crimerate.Area + " WHERE policeID = " + entity.getPrimaryKey();
-                        dataManager.persistSQL(sql);
+                        entity.Area = crimerate.Area;
+                        //string sql = "UPDATE Police SET area = " + crimerate.Area + " WHERE policeID = " + entity.getPrimaryKey();
+                        //dataManager.persistSQL(sql);
+                        dataManager.Merge(entity);
                     }
 
                     pointer += number;
